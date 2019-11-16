@@ -1,0 +1,17 @@
+{
+  "name": "trade_mirroring",
+  "version": "1.0.0",
+  "description": "Alt accounts follow each trade master account does on crypto exchanges.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Uros Tadic",
+  "license": "ISC",
+  "dependencies": {
+    "basic-auth": "^2.0.1",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.2",
+    "express": "^4.17.1"
+  }
+}

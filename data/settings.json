@@ -1,0 +1,34 @@
+{
+  "bitmex": {
+    "main": {
+      "api_key": "1234",
+      "api_secret": "1234"
+    },
+    "clients": {
+      "client1": {
+        "api_key": "1234",
+        "api_secret": "1234"
+      },
+      "client2": {
+        "api_key": "1234",
+        "api_secret": "1234"
+      }
+    }
+  },
+  "binnance": {
+    "main": {
+      "api_key": "1234",
+      "api_secret": "1234"
+    },
+    "clients": {
+      "client1": {
+        "api_key": "1234",
+        "api_secret": "1234"
+      },
+      "client2": {
+        "api_key": "1234",
+        "api_secret": "1234"
+      }
+    }
+  }
+}
