@@ -1,0 +1,9 @@
+1. Add tab system for each exchange so its easier to manage
+https://i.gyazo.com/bf92dda9fbb0ea3b03be74089b0eeb39.png
+
+2. Add routing and button controler from linkedin robot instead of submitting forms from EJS
+
+3. Add new client should append 2 new inputs (apikey + apisecret) below existing ones
+with appropriate id,class,name and value in html.
+
+4. Some final touches on css and notifications every time you save

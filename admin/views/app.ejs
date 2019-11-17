@@ -1,5 +1,62 @@
 <% include ./partials/header %>
 
-<h1>Exchanges</h1> 
+<h1>Exchanges</h1>
+
+
+<div class="bitmex">
+ <form action="/settings/update" method="POST">  
+ <h4>Bitmex</h4>
+
+<div class="main_bitmex">
+ 
+    <h5>MAIN ACCOUNT</h5>
+
+    <label for="main_bitmex_apikey">
+        Api Key
+    </label>
+    <input type="text" id="main_bitmex_apikey" class="main_bitmex_apikey"
+           name="settings[bitmex][main][api_key]" value="<%= settings.bitmex.main.api_key %>">
+
+    <label for="main_bitmex_apisecret">
+        Api Secret
+    </label>
+    <input type="text" id="main_bitmex_apisecret" class="main_bitmex_apisecret"
+           name="settings[bitmex][main][api_secret]" value="<%= settings.bitmex.main.api_secret %>">
+</div>
+
+<div class="client_bitmex">
+
+    <h5>CLIENT ACCOUNTS</h5>
+
+    <div class="adder_client_bitmex">
+    <label for="client_bitmex_apikey[client1]">
+            Api Key
+    </label>
+        <input type="text" id="client_bitmex_apikey[client1]" class="client_bitmex_apikey[client1]"
+               name="settings[bitmex][clients][client1][api_key]" value="<%= settings.bitmex.clients.client1.api_key %>">
+
+    <label for="client_bitmex_apisecret[client1]">
+            Api Secret
+    </label>
+        <input type="text" id="client_bitmex_apisecret[client1]" class="client_bitmex_apisecret[client1]"
+               name="settings[bitmex][clients][client1][api_secret]" value="<%= settings.bitmex.clients.client1.api_secret %>">
+    </div>
+
+    <button>Add new client</button>
+
+</div>
+ <button type="submit">Save</button>
+ </form>
+
+</div>
+
+
+
+<!-- <h5>Binance</h5>
+<h5>ByBit</h5>
+<h5>Veribit</h5> -->
+
+
+
 
 <% include ./partials/footer %>

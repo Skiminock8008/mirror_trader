@@ -24,9 +24,13 @@ class RouteUpdate {
         // Update settings
         app.post("/settings/update", ref.auth.do, async function (req, res) {
 
-            // Update shit
-            //req.body.shit
-            //ref.settings.shit = shit
+            //Bitmex
+            ref.settings.bitmex.main.api_key = req.body.settings.bitmex.main.api_key;
+            ref.settings.bitmex.main.api_secret = req.body.settings.bitmex.main.api_secret;
+
+            //Run clients through for loop later
+            ref.settings.bitmex.clients.client1.api_key = req.body.settings.bitmex.clients.client1.api_key;
+            ref.settings.bitmex.clients.client1.api_secret = req.body.settings.bitmex.clients.client1.api_secret;
 
             let data = false;
 
@@ -37,10 +41,10 @@ class RouteUpdate {
                 console.log(`/settings/update: err-1 ${err}`);
             }
 
-            res.json({
-                'status': 1,
-                'message': 'saved',
-            });
+            // res.json({
+            //     'status': 1,
+            //     'message': 'saved',
+            // });
 
         });
 
