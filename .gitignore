@@ -1,0 +1,6 @@
+node_modules/
+desktop.ini
+__pycache__
+*.pyc
+*.cookie
+engine/tmp/
