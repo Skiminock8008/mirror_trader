@@ -1,0 +1,39 @@
+/*Header / Logo*/
+.header-logo {
+    width: 3em;
+    margin: 0px 10px;
+    background: rgb(238, 220, 130);
+    vertical-align: middle;
+}
+/*---*/
+
+.bp3-button {
+    background: black;
+}
+
+
+/*Tabs*/
+.tab-bar {
+    display: block;
+    text-align: left;
+    /* margin-left: 20px; */
+}
+
+.tab-bar .bp3-button {
+    background: #EEDC82;
+    background-image: none !important;
+    outline: none;
+    margin-right: 0;
+}
+
+.tab-bar .bp3-button[class*="bp3-icon-"]::before {
+    color: black;
+}
+/* --- */
+
+
+/*Exchanges box*/
+.bp3-card {
+    min-height: 20em;
+}
+/* --- */
