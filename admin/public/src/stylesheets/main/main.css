@@ -1,15 +1,38 @@
-/*Header / Logo*/
+/*Header*/
 .header-logo {
     width: 3em;
     margin: 0px 10px;
     background: rgb(238, 220, 130);
     vertical-align: middle;
 }
+.save_history {
+    /*width: calc(100% - 4em);
+    margin-left: 2em; */
+    vertical-align: bottom;
+    font-family: monospace;
+    font-size: 0.80em;
+    cursor: pointer;
+    background-color: #111;
+    color: rgb(233, 19, 19);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 40px;
+    min-width: 397px;
+    /* margin-top: 6em;
+    margin-bottom: 2em; */
+}
+.save_history span {
+    display: block;
+    font-size: 1.0em;
+    height: 1.2em;
+}
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 /*---*/
 
-.bp3-button {
-    background: black;
-}
 
 
 /*Tabs*/
@@ -32,8 +55,19 @@
 /* --- */
 
 
-/*Exchanges box*/
+
+/*Exchanges tab content*/
 .bp3-card {
     min-height: 20em;
 }
+.client_name {
+    margin: 0;
+    display: block;
+    border: none;
+    width: 5em;
+}
+.new_client_btn {
+    margin-top: 2em;
+}
 /* --- */
+

@@ -28,9 +28,13 @@ class RouteUpdate {
             ref.settings.bitmex.main.api_key = req.body.settings.bitmex.main.api_key;
             ref.settings.bitmex.main.api_secret = req.body.settings.bitmex.main.api_secret;
 
-            //Run clients through for loop later
-            ref.settings.bitmex.clients.client1.api_key = req.body.settings.bitmex.clients.client1.api_key;
-            ref.settings.bitmex.clients.client1.api_secret = req.body.settings.bitmex.clients.client1.api_secret;
+            let bitmex_clients = Object.keys(req.body.settings.bitmex.clients).length;
+            
+            for(let i = 1; i <= bitmex_clients; i++) {
+            ref.settings.bitmex.clients["client" + i].name = req.body.settings.bitmex.clients["client" + i].name;
+            ref.settings.bitmex.clients["client" + i].api_key = req.body.settings.bitmex.clients["client" + i].api_key;
+            ref.settings.bitmex.clients["client" + i].api_secret = req.body.settings.bitmex.clients["client" + i].api_secret;
+            }
 
             let data = false;
 
@@ -41,10 +45,10 @@ class RouteUpdate {
                 console.log(`/settings/update: err-1 ${err}`);
             }
 
-            // res.json({
-            //     'status': 1,
-            //     'message': 'saved',
-            // });
+            res.json({
+                'status': 1,
+                'message': 'saved',
+            });
 
         });
 

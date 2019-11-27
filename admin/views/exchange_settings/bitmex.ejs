@@ -1,5 +1,4 @@
 <div class="bp3-card bp3-elevation-3 bp3 bitmex .modifier">
-    <form action="/settings/update" method="POST">
 
     <img src="/src/images/exchanges/bitmex.png" width="5%" />
        
@@ -24,25 +23,29 @@
        
            <h5>CLIENT ACCOUNTS</h5>
        
-           <div class="adder_client_bitmex">
-           <label for="client_bitmex_apikey[client1]">
-                   Api Key
-           </label>
-               <input type="text" id="client_bitmex_apikey[client1]" class="client_bitmex_apikey[client1]"
-                      name="settings[bitmex][clients][client1][api_key]" value="<%= settings.bitmex.clients.client1.api_key %>">
+        <div class="adder_client_bitmex">
+            <% for (var i = 1; i <= bmx_clients; i++) { %>
+            <div class="client client_div">
+                <input class="client_name" name="settings[bitmex][clients][client1][name]" value="Client <%=i%>"></input>
+                <label for="client_bitmex_apikey[client<%=i%>]">
+                        Api Key
+                </label>
+                    <input type="text" id="client_bitmex_apikey[client<%=i%>]" class="client_bitmex_apikey[client<%=i%>]"
+                           name="settings[bitmex][clients][client<%=i%>][api_key]" value="<%= settings.bitmex.clients['client' + i].api_key %>">
+            
+                <label for="client_bitmex_apisecret[client<%=i%>]">
+                        Api Secret
+                </label>
+                    <input type="text" id="client_bitmex_apisecret[client<%=i%>]" class="client_bitmex_apisecret[client<%=i%>]"
+                           name="settings[bitmex][clients][client<%=i%>][api_secret]" value="<%= settings.bitmex.clients['client' + i].api_secret %>">
+            </div>
+            <% } %>
+        </div>
        
-           <label for="client_bitmex_apisecret[client1]">
-                   Api Secret
-           </label>
-               <input type="text" id="client_bitmex_apisecret[client1]" class="client_bitmex_apisecret[client1]"
-                      name="settings[bitmex][clients][client1][api_secret]" value="<%= settings.bitmex.clients.client1.api_secret %>">
-           </div>
-       
-           <button>Add new client</button>
+           <button class="new_client_btn bitmex_new" onclick="return CTX_CLIENT.add_html()">Add new client</button>
        
        </div>
 
-       <button type="submit">Save</button>
+       <button class="update_form" role="button">Save</button>
       
-    </form>
 </div>

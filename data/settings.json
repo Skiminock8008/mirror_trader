@@ -1,17 +1,21 @@
 {
   "bitmex": {
     "main": {
-      "api_key": "1f0DQ5yPTRoprSaO03qR9Uka",
+      "api_key": "1231f0DQ5yPTRoprSaO03qR9Uka",
       "api_secret": "MtOcjigR1BgYvZovgjaL2FHbG90lhumsDKmi7B5YjpuTj25Y"
     },
     "clients": {
       "client1": {
+        "name": [
+          "Client 1",
+          "Client 2"
+        ],
         "api_key": "k-g33e63ZWhl-TRyI3_E2Ewp",
         "api_secret": "BVSC5XJEe5B_kTC6TJ6OHB18_8gCqCmVpnNvR86N5pUXwnXr"
       },
       "client2": {
-        "api_key": "1234",
-        "api_secret": "1234"
+        "api_key": "test223",
+        "api_secret": "test4235"
       }
     }
   },

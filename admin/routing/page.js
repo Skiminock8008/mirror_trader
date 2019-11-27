@@ -21,8 +21,12 @@ class RoutePage {
         
         // Home Page
         app.get("/", ref.auth.do, async function (req, res) {
+
+            let bitmex_clients = Object.keys(ref.settings.bitmex.clients).length;
+
             res.render("app", {
                 settings: ref.settings,
+                bmx_clients: bitmex_clients
             });
         });
 
