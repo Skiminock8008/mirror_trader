@@ -1,4 +1,6 @@
 // Modular Settings Page 
+//old bg color: #EEDC82
+//old resetTabs color: #c1c1c1
 let TabSystem = {
 
     variables: {
@@ -10,14 +12,14 @@ let TabSystem = {
     init: function () {
         this.resetTabs();
         this.variables.contents[0].style = `display: block;`;
-        this.variables.tabBars[0].style = `background-color: #EEDC82; color: #000 !important`;
+        this.variables.tabBars[0].style = `background-color: #ad7580; color: #000 !important`;
         window.addEventListener('keydown', this.checkTab);
 
         this.variables.tabBars.forEach(function (tabBar, tabBarIndex) {
             tabBar.addEventListener("click", function () {
                 TabSystem.resetTabs()
                 TabSystem.variables.contents[tabBarIndex].style = `display: block;`
-                this.style = `background-color: #EEDC82; color: #000; !important`
+                this.style = `background-color: #ad7580; color: #000; !important`
             })
         })
     },
@@ -26,7 +28,7 @@ let TabSystem = {
     resetTabs: function () {
         for (let i = 0; i < this.variables.contents.length; i++) {
             this.variables.contents[i].style = `display: none;`
-            this.variables.tabBars[i].style = `background-color: #e5e5e5; color: #000 !important;`
+            this.variables.tabBars[i].style = `background-color: #c1c1c1; color: #000 !important;`
         }
     },
 

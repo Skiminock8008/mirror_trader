@@ -31,9 +31,19 @@ class RouteUpdate {
             let bitmex_clients = Object.keys(req.body.settings.bitmex.clients).length;
             
             for(let i = 1; i <= bitmex_clients; i++) {
-            ref.settings.bitmex.clients["client" + i].name = req.body.settings.bitmex.clients["client" + i].name;
-            ref.settings.bitmex.clients["client" + i].api_key = req.body.settings.bitmex.clients["client" + i].api_key;
-            ref.settings.bitmex.clients["client" + i].api_secret = req.body.settings.bitmex.clients["client" + i].api_secret;
+              if(ref.settings.bitmex.clients["client" + i] == undefined) {
+                ref.settings.bitmex.clients = {...ref.settings.bitmex.clients, 
+                                           ["client" + i]: {"name": ["client" + i], 
+                                                            "api_key": "",
+                                                            "api_secret": "" }}
+              }  
+                if(req.body.settings.bitmex.clients["client" + i].api_key != "") {
+                ref.settings.bitmex.clients["client" + i].name = req.body.settings.bitmex.clients["client" + i].name;
+                ref.settings.bitmex.clients["client" + i].api_key = req.body.settings.bitmex.clients["client" + i].api_key;
+                ref.settings.bitmex.clients["client" + i].api_secret = req.body.settings.bitmex.clients["client" + i].api_secret;
+                } else {
+                    delete ref.settings.bitmex.clients["client" + i];
+                }
             }
 
             let data = false;

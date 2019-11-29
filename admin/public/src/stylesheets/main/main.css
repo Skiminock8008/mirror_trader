@@ -1,8 +1,40 @@
+/*Basic color scheme that is not cancer on my eyes 
+  REMOVE IF YOU WANT IT TO BE ALL WHITE */
+body {
+    background: black;
+}
+.bp3-card {
+    background: #1A1A1D;  /* fallback for old browsers */
+    
+}
+.bp3-navbar {
+    background: #4E4E50;
+    color: white;
+}
+h5 {
+    font-size: 1em;
+    color: #950740;
+}
+
+label {
+    color: #c34e67;
+}
+
+.client_name {
+    background: #1A1A1D;
+    color: #c34e67;
+    font-weight: bold;
+}
+/* Basic color scheme*/
+
+
+
+
 /*Header*/
 .header-logo {
     width: 3em;
     margin: 0px 10px;
-    background: rgb(238, 220, 130);
+
     vertical-align: middle;
 }
 .save_history {
@@ -71,3 +103,6 @@
 }
 /* --- */
 
+.client {
+    margin-bottom: 0.5em;
+}
