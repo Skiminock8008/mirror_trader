@@ -4,9 +4,10 @@ https://i.gyazo.com/bf92dda9fbb0ea3b03be74089b0eeb39.png
 DONE) Add new client should append 2 new inputs (apikey + apisecret) below existing ones
 with appropriate id,class,name and value in html.
 
-3. Add delete button and try to edit json instead of having it hardcoded
+DONE) Add delete button and try to edit json instead of having it hardcoded
 
-4. Do same thing for other 3 exchanges
+4. Do same thing for other 3 exchanges, quite easy all that needs to be changed is passing exchange as paramter aswell
+then copy/paste bitmex.ejs to other ejs files.
 
 DONE) Copy routing and button controler from linkedin robot instead of submitting forms from EJS
 

@@ -24,23 +24,24 @@
            <h5>CLIENT ACCOUNTS</h5>
        
         <div class="adder_client_bitmex">
-            <% for (var i = 1; i <= bmx_clients; i++) { %>
-              <%  if(settings.bitmex.clients['client' + i].api_key != "" && settings.bitmex.clients['client' + i].api_key != undefined) { %>
-            <div class="client client_div<%=i%>">
-                <input class="client_name" name="settings[bitmex][clients][client<%=i%>][name]" value="Client <%=i%>"></input>
-                <label for="client_bitmex_apikey[client<%=i%>]">
+            <% for (let i in settings.bitmex.clients) { %>
+              <%  if(settings.bitmex.clients[i].api_key != "" && settings.bitmex.clients[i].api_key != undefined) { %>
+                <% let w = i.replace(/\D/g, "") %>
+            <div class="client <%=i%>_div">
+                <input class="client_name" name="settings[bitmex][clients][<%=i%>][name]" value="Client <%=w%>" />
+                <label for="client_bitmex_apikey[<%=i%>]">
                         Api Key
                 </label>
-                    <input type="text" id="client_bitmex_apikey[client<%=i%>]" class="client_bitmex_apikey[client<%=i%>]"
-                           name="settings[bitmex][clients][client<%=i%>][api_key]" value="<%= settings.bitmex.clients['client' + i].api_key %>" />
+                    <input type="text" id="client_bitmex_apikey[<%=i%>]" class="client_bitmex_apikey[<%=i%>]"
+                           name="settings[bitmex][clients][<%=i%>][api_key]" value="<%= settings.bitmex.clients[i].api_key %>" />
             
-                <label for="client_bitmex_apisecret[client<%=i%>]">
+                <label for="client_bitmex_apisecret[<%=i%>]">
                         Api Secret
                 </label>
-                    <input type="text" id="client_bitmex_apisecret[client<%=i%>]" class="client_bitmex_apisecret[client<%=i%>]"
-                           name="settings[bitmex][clients][client<%=i%>][api_secret]" value="<%= settings.bitmex.clients['client' + i].api_secret %>" />
+                    <input type="text" id="client_bitmex_apisecret[<%=i%>]" class="client_bitmex_apisecret[<%=i%>]"
+                           name="settings[bitmex][clients][<%=i%>][api_secret]" value="<%= settings.bitmex.clients[i].api_secret %>" />
                     
-                    <button class="delete_client delete_bitmex[client<%=i%>]" type="button" onclick="return CTX_CLIENT.delete_me(this.className)">Delete me</button>
+                    <button class="delete_client delete_bitmex[<%=i%>]" type="button" onclick="return CTX_CLIENT.delete_me(this.className)">Delete me</button>
             </div>
             
               <% } %>

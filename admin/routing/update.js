@@ -20,6 +20,16 @@ class RouteUpdate {
     apply() {
         let ref = this;
         let app = ref.app;
+        let save = async function() {
+            let data = false;
+
+            data = JSON.stringify(ref.settings, null, 2);
+            try {
+                await fs.writeFile(config['locations']['settings'], data, () => {});
+            } catch (err) {
+                console.log(`/settings/update: err-1 ${err}`);
+            }
+        };
 
         // Update settings
         app.post("/settings/update", ref.auth.do, async function (req, res) {
@@ -46,22 +56,26 @@ class RouteUpdate {
                 }
             }
 
-            let data = false;
-
-            data = JSON.stringify(ref.settings, null, 2);
-            try {
-                await fs.writeFile(config['locations']['settings'], data, () => {});
-            } catch (err) {
-                console.log(`/settings/update: err-1 ${err}`);
-            }
+            save();
 
             res.json({
                 'status': 1,
-                'message': 'saved',
+                'message': 'Saved',
             });
 
         });
+        
+        app.post("/settings/delete", ref.auth.do, async function (req, res) {
+            let id = req.body.id;
+            delete ref.settings.bitmex.clients["client" + id];
 
+            save();
+
+            res.json({
+                'status': 1,
+                'message': `Client ${id} deleted`,
+            });
+        });
     }
 
 }

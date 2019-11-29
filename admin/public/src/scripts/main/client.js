@@ -15,7 +15,7 @@ let CTX_CLIENT = {
     //Now that we have info we need from count_client, we can generate input html
     generate_html: function(pos) {
         // Main div
-        let html = `<div class="client client_div${pos}">`;
+        let html = `<div class="client client${pos}_div">`;
         html += ` <input class="client_name" name="settings[bitmex][clients][client${pos}][name]"`;
         html += ` value="Client ${pos}" />`;
 
@@ -62,14 +62,34 @@ let CTX_CLIENT = {
         let id = e.replace(/\D/g, "");
 
         //Remove from front end
-        $(".client_div" + id).remove();
+        $(`.client${id}_div`).remove();
         
         //Remove from back end
-        
+        $.ajax({
+            url: "/settings/delete",
+            data: {id: id},
+            type: "POST",
+            cache: false,
+            async: true,
+            timeout: 30 * 1000
+        })
+        .fail(function (data, text_status, error_thrown) {
+            console.log(error_thrown);
+        })
+        .done(function (res) {
 
-        //Delete client from front end and back end in settings.json
-        
-        //Re-sort the list so if page refresh is made it doesn't crash and there are no missing numbers
+            messages.push(CTX_TIME.get_time() + " - " + res['message']);
+
+            save_history.empty();
+            for (let i in messages) {
+                if (messages.length > 3) {
+                    messages.shift(i);
+                }
+                save_history.append(`<span>${messages[i]} &nbsp;</span>`);
+                save_history.scrollTop = save_history.scrollHeight;
+            }
+        });
+
     }
 
 }
