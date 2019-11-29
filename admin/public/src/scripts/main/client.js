@@ -17,11 +17,11 @@ let CTX_CLIENT = {
         // Main div
         let html = `<div class="client client_div${pos}">`;
         html += ` <input class="client_name" name="settings[bitmex][clients][client${pos}][name]"`;
-        html += ` value="Client ${pos}"`;
+        html += ` value="Client ${pos}" />`;
 
         // Label for API KEY
         html += ` <label for="client_bitmex_apikey[client${pos}]">`;
-        html += " Api Key </label> &nbsp";
+        html += ` Api Key </label>`;
         // Input of API KEY
         html += `<input type="text" id="client_bitmex_apikey[client${pos}]"`;
         html += ` class="client_bitmex_apikey[client${pos}]"`; 
@@ -31,13 +31,19 @@ let CTX_CLIENT = {
 
         // Label for API SECRET
         html += `<label for="client_bitmex_apisecret[client${pos}]">`;
-        html += " Api Secret </label> &nbsp";
+        html += " Api Secret </label>";
         // Input of API SECRET
         html += `<input type="text" id="client_bitmex_apisecret[client${pos}]"`;
         html += ` class="client_bitmex_apisecret[client${pos}]"`; 
         html += ` name="settings[bitmex][clients][client${pos}][api_secret]"`;
         //html += ` value="<%= settings.bitmex.clients.client${pos}.api_secret %>"`;
         html += `></input>`
+
+       
+        //Button
+        html += ` <button class="delete_client delete_bitmex[client${pos}]" `;
+        html += `type="button" onclick="return CTX_CLIENT.delete_me(this.className)">`
+        html += `Delete me </button>`;
 
         html += `</div>`
 
