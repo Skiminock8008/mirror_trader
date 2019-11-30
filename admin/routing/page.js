@@ -1,3 +1,5 @@
+const fs = require('fs');
+const config = require('./../config');
 
 class RoutePage {
     
@@ -18,9 +20,20 @@ class RoutePage {
     apply() {
         let ref = this;
         let app = ref.app;
+        let refresh_json = async function() {
+            let data = false;
+            try {
+                data = fs.readFileSync(config['locations']['settings']);
+                ref.settings = JSON.parse(data);
+            } catch (err) {
+                console.log(`Error in parsing file ${config['locations']['settings']} -> ${err}`);
+            }
+        }
         
         // Home Page
         app.get("/", ref.auth.do, async function (req, res) {
+
+            refresh_json();
 
             res.render("app", {
                 settings: ref.settings,
