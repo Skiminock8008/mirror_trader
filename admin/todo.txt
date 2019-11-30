@@ -6,9 +6,9 @@ with appropriate id,class,name and value in html.
 
 DONE) Add delete button and try to edit json instead of having it hardcoded
 
-4. Do same thing for other 3 exchanges, quite easy all that needs to be changed is passing exchange as paramter aswell
+DONE) Do same thing for other 3 exchanges, quite easy all that needs to be changed is passing exchange as paramter aswell
 then copy/paste bitmex.ejs to other ejs files.
 
 DONE) Copy routing and button controler from linkedin robot instead of submitting forms from EJS
 
-5. Final touches on css and notification bar
+5. Final touches on css and notification bar and fix any bugs that might come up while testing
