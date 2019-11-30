@@ -6,32 +6,83 @@
     },
     "clients": {
       "client1": {
-        "name": [
-          "Client 1",
-          "Client 2"
-        ],
+        "name": "Client 1",
         "api_key": "k-g33e63ZWhl-TRyI3_E2Ewp",
         "api_secret": "BVSC5XJEe5B_kTC6TJ6OHB18_8gCqCmVpnNvR86N5pUXwnXr"
       },
       "client2": {
-        "api_key": "test223",
-        "api_secret": "test4235"
+        "name": "Client 2",
+        "api_key": "test252",
+        "api_secret": "test222"
+      },
+      "client3": {
+        "name": "Client 3",
+        "api_key": "test31",
+        "api_secret": "test3"
       }
     }
   },
-  "binnance": {
+  "binance": {
     "main": {
       "api_key": "1234",
       "api_secret": "1234"
     },
     "clients": {
       "client1": {
-        "api_key": "1234",
-        "api_secret": "1234"
+        "api_key": "1234bin2",
+        "api_secret": "1234nance12",
+        "name": "Client 1"
+      },
+      "client3": {
+        "name": "Client 3",
+        "api_key": "test35",
+        "api_secret": "test355"
       },
       "client2": {
-        "api_key": "1234",
-        "api_secret": "1234"
+        "name": "Client 2",
+        "api_key": "1234nance",
+        "api_secret": "1234nib"
+      },
+      "client4": {
+        "name": "Client 4",
+        "api_key": "test4",
+        "api_secret": "test4"
+      }
+    }
+  },
+  "bybit": {
+    "main": {
+      "api_key": "1234",
+      "api_secret": "1234"
+    },
+    "clients": {
+      "client1": {
+        "api_key": "1234byby",
+        "api_secret": "1234bit2",
+        "name": "Client 1"
+      },
+      "client2": {
+        "api_key": "1234yb52",
+        "api_secret": "1234tib12",
+        "name": "Client 2"
+      }
+    }
+  },
+  "verbit": {
+    "main": {
+      "api_key": "1234",
+      "api_secret": "1234"
+    },
+    "clients": {
+      "client1": {
+        "api_key": "1234verb",
+        "api_secret": "1234revb",
+        "name": "Client 1"
+      },
+      "client2": {
+        "api_key": "1234vrb",
+        "api_secret": "1234rvb",
+        "name": "Client 2"
       }
     }
   }

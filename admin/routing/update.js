@@ -50,7 +50,7 @@ class RouteUpdate {
                                                ["client" + i]: {"name": ["client" + i], 
                                                                 "api_key": "",
                                                                 "api_secret": "" }}
-                  }  
+                  }             
                     if(req.body.settings[ex].clients["client" + i].api_key != "") {
                     ref.settings[ex].clients["client" + i].name = req.body.settings[ex].clients["client" + i].name;
                     ref.settings[ex].clients["client" + i].api_key = req.body.settings[ex].clients["client" + i].api_key;
