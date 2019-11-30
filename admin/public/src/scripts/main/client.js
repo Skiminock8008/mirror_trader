@@ -15,7 +15,7 @@ let CTX_CLIENT = {
     //Now that we have info we need from count_client, we can generate input html
     generate_html: function(pos, exchange) {
         // Main div
-        let html = `<div class="client client${pos}_div">`;
+        let html = `<div class="client ${exchange}_client${pos}_div">`;
         html += ` <input class="client_name" name="settings[${exchange}][clients][client${pos}][name]"`;
         html += ` value="Client ${pos}" />`;
 
@@ -70,7 +70,7 @@ let CTX_CLIENT = {
         }
 
         //Remove from front end
-        $(`.client${id}_div`).remove();
+        $(`.${exchange}_client${id}_div`).remove();
         
         //Remove from back end
         $.ajax({

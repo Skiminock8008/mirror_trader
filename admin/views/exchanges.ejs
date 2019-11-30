@@ -28,7 +28,7 @@
             <% for (let i in settings[ex].clients) { %>
               <%  if(settings[ex].clients[i].api_key != "" && settings[ex].clients[i].api_key != undefined) { %>
                 <% let w = i.replace(/\D/g, "") %>
-            <div class="client <%=i%>_div">
+            <div class="client <%=ex%>_<%=i%>_div">
                 <input class="client_name" name="settings[<%=ex%>][clients][<%=i%>][name]" value="Client <%=w%>" />
                 <label for="client_<%=ex%>_apikey[<%=i%>]">
                         Api Key
