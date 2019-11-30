@@ -10,6 +10,7 @@ class RouteUpdate {
     constructor(app, ref) {
         this.app = app;
         this.settings = ref.settings;
+        this.config = ref.config;
         this.auth = ref.auth;
     }
 
@@ -30,29 +31,33 @@ class RouteUpdate {
                 console.log(`/settings/update: err-1 ${err}`);
             }
         };
+        let exchanges = ref.config.exchanges;
 
         // Update settings
         app.post("/settings/update", ref.auth.do, async function (req, res) {
 
-            //Bitmex
-            ref.settings.bitmex.main.api_key = req.body.settings.bitmex.main.api_key;
-            ref.settings.bitmex.main.api_secret = req.body.settings.bitmex.main.api_secret;
+            for (const x in exchanges) {
+                let ex = exchanges[x];
 
-            let bitmex_clients = Object.keys(req.body.settings.bitmex.clients).length;
-            
-            for(let i = 1; i <= bitmex_clients; i++) {
-              if(ref.settings.bitmex.clients["client" + i] == undefined) {
-                ref.settings.bitmex.clients = {...ref.settings.bitmex.clients, 
-                                           ["client" + i]: {"name": ["client" + i], 
-                                                            "api_key": "",
-                                                            "api_secret": "" }}
-              }  
-                if(req.body.settings.bitmex.clients["client" + i].api_key != "") {
-                ref.settings.bitmex.clients["client" + i].name = req.body.settings.bitmex.clients["client" + i].name;
-                ref.settings.bitmex.clients["client" + i].api_key = req.body.settings.bitmex.clients["client" + i].api_key;
-                ref.settings.bitmex.clients["client" + i].api_secret = req.body.settings.bitmex.clients["client" + i].api_secret;
-                } else {
-                    delete ref.settings.bitmex.clients["client" + i];
+                ref.settings[ex].main.api_key = req.body.settings[ex].main.api_key;
+                ref.settings[ex].main.api_secret = req.body.settings[ex].main.api_secret;
+    
+                let clients = Object.keys(req.body.settings[ex].clients).length;
+                  
+                for(let i = 1; i <= clients; i++) {
+                  if(ref.settings[ex].clients["client" + i] == undefined) {
+                    ref.settings[ex].clients = {...ref.settings[ex].clients, 
+                                               ["client" + i]: {"name": ["client" + i], 
+                                                                "api_key": "",
+                                                                "api_secret": "" }}
+                  }  
+                    if(req.body.settings[ex].clients["client" + i].api_key != "") {
+                    ref.settings[ex].clients["client" + i].name = req.body.settings[ex].clients["client" + i].name;
+                    ref.settings[ex].clients["client" + i].api_key = req.body.settings[ex].clients["client" + i].api_key;
+                    ref.settings[ex].clients["client" + i].api_secret = req.body.settings[ex].clients["client" + i].api_secret;
+                    } else {
+                        delete ref.settings[ex].clients["client" + i];
+                    }
                 }
             }
 
@@ -67,7 +72,8 @@ class RouteUpdate {
         
         app.post("/settings/delete", ref.auth.do, async function (req, res) {
             let id = req.body.id;
-            delete ref.settings.bitmex.clients["client" + id];
+            let ex = req.body.exchange;
+            delete ref.settings[ex].clients["client" + id];
 
             save();
 

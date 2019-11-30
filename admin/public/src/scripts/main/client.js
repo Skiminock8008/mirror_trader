@@ -2,46 +2,46 @@ let CTX_CLIENT = {
 
     //Calculate the existing inputs and add +1 to make space for the new one
     //If earlier input has been deleted fill that space first
-    count_client: function() {
-        let inputs_length = $("input[class*='client_bitmex_apikey']").length;
-        for(let i = 1; i <= inputs_length; i++) {
-            if (document.getElementById("client_bitmex_apikey[client" + i + "]") == null){
+    count_client: function(exchange) {
+        let num_of_clients = $(`input[class*="client_${exchange}_apikey"]`).length;
+        for(let i = 1; i <= num_of_clients; i++) {
+            if (document.getElementById(`client_${exchange}_apikey[client${i}]`) == null){
                 return i;
             }
         }
-        return $("input[class*='client_bitmex_apikey']").length + 1; 
+        return num_of_clients + 1; 
     },
 
     //Now that we have info we need from count_client, we can generate input html
-    generate_html: function(pos) {
+    generate_html: function(pos, exchange) {
         // Main div
         let html = `<div class="client client${pos}_div">`;
-        html += ` <input class="client_name" name="settings[bitmex][clients][client${pos}][name]"`;
+        html += ` <input class="client_name" name="settings[${exchange}][clients][client${pos}][name]"`;
         html += ` value="Client ${pos}" />`;
 
         // Label for API KEY
-        html += ` <label for="client_bitmex_apikey[client${pos}]">`;
+        html += ` <label for="client_${exchange}_apikey[client${pos}]">`;
         html += ` Api Key </label>`;
         // Input of API KEY
-        html += `<input type="text" id="client_bitmex_apikey[client${pos}]"`;
-        html += ` class="client_bitmex_apikey[client${pos}]"`; 
-        html += ` name="settings[bitmex][clients][client${pos}][api_key]"`;
-        //html += ` value="<%= settings.bitmex.clients.client${pos}.api_key %>"`;
+        html += `<input type="text" id="client_${exchange}_apikey[client${pos}]"`;
+        html += ` class="client_${exchange}_apikey[client${pos}]"`; 
+        html += ` name="settings[${exchange}][clients][client${pos}][api_key]"`;
+        //html += ` value="<%= settings.${exchange}.clients.client${pos}.api_key %>"`;
         html += `></input>`
 
         // Label for API SECRET
-        html += `<label for="client_bitmex_apisecret[client${pos}]">`;
+        html += `<label for="client_${exchange}_apisecret[client${pos}]">`;
         html += " Api Secret </label>";
         // Input of API SECRET
-        html += `<input type="text" id="client_bitmex_apisecret[client${pos}]"`;
-        html += ` class="client_bitmex_apisecret[client${pos}]"`; 
-        html += ` name="settings[bitmex][clients][client${pos}][api_secret]"`;
-        //html += ` value="<%= settings.bitmex.clients.client${pos}.api_secret %>"`;
+        html += `<input type="text" id="client_${exchange}_apisecret[client${pos}]"`;
+        html += ` class="client_${exchange}_apisecret[client${pos}]"`; 
+        html += ` name="settings[${exchange}][clients][client${pos}][api_secret]"`;
+        //html += ` value="<%= settings.${exchange}.clients.client${pos}.api_secret %>"`;
         html += `></input>`
 
        
         //Button
-        html += ` <button class="delete_client delete_bitmex[client${pos}]" `;
+        html += ` <button class="delete_client delete_${exchange}[client${pos}]" `;
         html += `type="button" onclick="return CTX_CLIENT.delete_me(this.className)">`
         html += `Delete me </button>`;
 
@@ -50,9 +50,9 @@ let CTX_CLIENT = {
         return html;
     },
 
-    add_html: function() {
-        let html = this.generate_html(this.count_client());
-        $(".adder_client_bitmex").append(html);
+    add_html: function(exchange) {
+        let html = this.generate_html(this.count_client(exchange), exchange);
+        $(`.adder_client_${exchange}`).append(html);
         return false;
     },
 
@@ -60,6 +60,14 @@ let CTX_CLIENT = {
     //Append delete button next to each input. It calculates which client its associated with and runs function on it
     delete_me: function(e) {
         let id = e.replace(/\D/g, "");
+        let exchanges = ["bitmex", "binance", "bybit", "verbit"];
+        let exchange;
+
+        for (const x in exchanges) {
+            if (e.includes(exchanges[x])) {
+                exchange = exchanges[x];
+            }
+        }
 
         //Remove from front end
         $(`.client${id}_div`).remove();
@@ -67,7 +75,7 @@ let CTX_CLIENT = {
         //Remove from back end
         $.ajax({
             url: "/settings/delete",
-            data: {id: id},
+            data: {id: id, exchange: exchange},
             type: "POST",
             cache: false,
             async: true,
@@ -77,7 +85,7 @@ let CTX_CLIENT = {
             console.log(error_thrown);
         })
         .done(function (res) {
-
+            console.log(e);
             messages.push(CTX_TIME.get_time() + " - " + res['message']);
 
             save_history.empty();

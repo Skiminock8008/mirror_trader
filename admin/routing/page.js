@@ -10,7 +10,7 @@ class RoutePage {
     constructor(app, ref) {
         this.app = app;
         this.settings = ref.settings;
-        this.config     = ref.config;
+        this.config = ref.config;
         this.auth = ref.auth;
     }
 
@@ -37,6 +37,7 @@ class RoutePage {
 
             res.render("app", {
                 settings: ref.settings,
+                exchanges: ref.config.exchanges,
             });
         });
 
