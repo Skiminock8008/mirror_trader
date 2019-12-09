@@ -1,0 +1,282 @@
+{
+    "action": "insert",
+    "data": [
+        {
+            "account": 259018,
+            "avgPx": null,
+            "clOrdID": "",
+            "clOrdLinkID": "",
+            "contingencyType": "",
+            "cumQty": 0,
+            "currency": "USD",
+            "displayQty": null,
+            "exDestination": "XBME",
+            "execInst": "",
+            "leavesQty": 21,
+            "multiLegReportingType": "SingleSecurity",
+            "ordRejReason": "",
+            "ordStatus": "New",
+            "ordType": "Limit",
+            "orderID": "9cccd311-e0af-428e-326e-2083ee4b5f18",
+            "orderQty": 21,
+            "pegOffsetValue": null,
+            "pegPriceType": "",
+            "price": 7384,
+            "settlCurrency": "XBt",
+            "side": "Buy",
+            "simpleCumQty": null,
+            "simpleLeavesQty": null,
+            "simpleOrderQty": null,
+            "stopPx": null,
+            "symbol": "XBTUSD",
+            "text": "Submission from testnet.bitmex.com",
+            "timeInForce": "GoodTillCancel",
+            "timestamp": "2019-12-06T15:03:00.581Z",
+            "transactTime": "2019-12-06T15:03:00.581Z",
+            "triggered": "",
+            "workingIndicator": false
+        }
+    ],
+    "table": "order"
+}{
+    "action": "update",
+    "data": [
+        {
+            "account": 259018,
+            "clOrdID": "",
+            "orderID": "9cccd311-e0af-428e-326e-2083ee4b5f18",
+            "symbol": "XBTUSD",
+            "timestamp": "2019-12-06T15:03:00.581Z",
+            "workingIndicator": true
+        }
+    ],
+    "table": "order"
+}{
+    "action": "update",
+    "data": [
+        {
+            "account": 259018,
+            "clOrdID": "",
+            "leavesQty": 0,
+            "ordStatus": "Canceled",
+            "orderID": "9cccd311-e0af-428e-326e-2083ee4b5f18",
+            "symbol": "XBTUSD",
+            "text": "Canceled: Cancel from testnet.bitmex.com\nSubmission from testnet.bitmex.com",
+            "timestamp": "2019-12-06T15:03:10.587Z",
+            "workingIndicator": false
+        }
+    ],
+    "table": "order"
+}{
+    "action": "insert",
+    "data": [
+        {
+            "account": 259018,
+            "avgPx": null,
+            "clOrdID": "",
+            "clOrdLinkID": "",
+            "contingencyType": "",
+            "cumQty": 0,
+            "currency": "USD",
+            "displayQty": null,
+            "exDestination": "XBME",
+            "execInst": "",
+            "leavesQty": 21,
+            "multiLegReportingType": "SingleSecurity",
+            "ordRejReason": "",
+            "ordStatus": "New",
+            "ordType": "Limit",
+            "orderID": "3f4e4d5b-f8b1-10dd-fd82-10dff14d43fa",
+            "orderQty": 21,
+            "pegOffsetValue": null,
+            "pegPriceType": "",
+            "price": 7384,
+            "settlCurrency": "XBt",
+            "side": "Buy",
+            "simpleCumQty": null,
+            "simpleLeavesQty": null,
+            "simpleOrderQty": null,
+            "stopPx": null,
+            "symbol": "XBTUSD",
+            "text": "Submission from testnet.bitmex.com",
+            "timeInForce": "GoodTillCancel",
+            "timestamp": "2019-12-06T15:07:15.237Z",
+            "transactTime": "2019-12-06T15:07:15.237Z",
+            "triggered": "",
+            "workingIndicator": false
+        }
+    ],
+    "table": "order"
+}{
+    "action": "update",
+    "data": [
+        {
+            "account": 259018,
+            "clOrdID": "",
+            "orderID": "3f4e4d5b-f8b1-10dd-fd82-10dff14d43fa",
+            "symbol": "XBTUSD",
+            "timestamp": "2019-12-06T15:07:15.237Z",
+            "workingIndicator": true
+        }
+    ],
+    "table": "order"
+}{
+    "action": "update",
+    "data": [
+        {
+            "account": 259018,
+            "clOrdID": "",
+            "leavesQty": 0,
+            "ordStatus": "Canceled",
+            "orderID": "3f4e4d5b-f8b1-10dd-fd82-10dff14d43fa",
+            "symbol": "XBTUSD",
+            "text": "Canceled: Cancel from testnet.bitmex.com\nSubmission from testnet.bitmex.com",
+            "timestamp": "2019-12-06T15:07:24.823Z",
+            "workingIndicator": false
+        }
+    ],
+    "table": "order"
+}{
+    "action": "insert",
+    "data": [
+        {
+            "account": 259018,
+            "avgPx": null,
+            "clOrdID": "",
+            "clOrdLinkID": "",
+            "contingencyType": "",
+            "cumQty": 0,
+            "currency": "USD",
+            "displayQty": null,
+            "exDestination": "XBME",
+            "execInst": "",
+            "leavesQty": 21,
+            "multiLegReportingType": "SingleSecurity",
+            "ordRejReason": "",
+            "ordStatus": "New",
+            "ordType": "Limit",
+            "orderID": "98e73b68-2a06-587e-bca8-e48c7124c950",
+            "orderQty": 21,
+            "pegOffsetValue": null,
+            "pegPriceType": "",
+            "price": 7384,
+            "settlCurrency": "XBt",
+            "side": "Sell",
+            "simpleCumQty": null,
+            "simpleLeavesQty": null,
+            "simpleOrderQty": null,
+            "stopPx": null,
+            "symbol": "XBTUSD",
+            "text": "Submission from testnet.bitmex.com",
+            "timeInForce": "GoodTillCancel",
+            "timestamp": "2019-12-06T15:07:32.227Z",
+            "transactTime": "2019-12-06T15:07:32.227Z",
+            "triggered": "",
+            "workingIndicator": false
+        }
+    ],
+    "table": "order"
+}{
+    "action": "update",
+    "data": [
+        {
+            "account": 259018,
+            "clOrdID": "",
+            "orderID": "98e73b68-2a06-587e-bca8-e48c7124c950",
+            "symbol": "XBTUSD",
+            "timestamp": "2019-12-06T15:07:32.227Z",
+            "workingIndicator": true
+        }
+    ],
+    "table": "order"
+}{
+    "action": "update",
+    "data": [
+        {
+            "account": 259018,
+            "avgPx": 7386,
+            "clOrdID": "",
+            "cumQty": 21,
+            "leavesQty": 0,
+            "ordStatus": "Filled",
+            "orderID": "98e73b68-2a06-587e-bca8-e48c7124c950",
+            "symbol": "XBTUSD",
+            "timestamp": "2019-12-06T15:07:32.227Z",
+            "workingIndicator": false
+        }
+    ],
+    "table": "order"
+}{
+    "action": "insert",
+    "data": [
+        {
+            "account": 259018,
+            "avgPx": null,
+            "clOrdID": "",
+            "clOrdLinkID": "",
+            "contingencyType": "",
+            "cumQty": 0,
+            "currency": "USD",
+            "displayQty": null,
+            "exDestination": "XBME",
+            "execInst": "Close",
+            "leavesQty": null,
+            "multiLegReportingType": "SingleSecurity",
+            "ordRejReason": "",
+            "ordStatus": "New",
+            "ordType": "Limit",
+            "orderID": "d3571be4-5e53-bf23-7fd9-049a95c8ce7f",
+            "orderQty": null,
+            "pegOffsetValue": null,
+            "pegPriceType": "",
+            "price": 7397,
+            "settlCurrency": "XBt",
+            "side": "",
+            "simpleCumQty": null,
+            "simpleLeavesQty": null,
+            "simpleOrderQty": null,
+            "stopPx": null,
+            "symbol": "XBTUSD",
+            "text": "Position Close from testnet.bitmex.com",
+            "timeInForce": "GoodTillCancel",
+            "timestamp": "2019-12-06T15:07:43.686Z",
+            "transactTime": "2019-12-06T15:07:43.686Z",
+            "triggered": "",
+            "workingIndicator": false
+        }
+    ],
+    "table": "order"
+}{
+    "action": "update",
+    "data": [
+        {
+            "account": 259018,
+            "clOrdID": "",
+            "leavesQty": 21,
+            "orderID": "d3571be4-5e53-bf23-7fd9-049a95c8ce7f",
+            "orderQty": 21,
+            "side": "Buy",
+            "symbol": "XBTUSD",
+            "timestamp": "2019-12-06T15:07:43.686Z",
+            "workingIndicator": true
+        }
+    ],
+    "table": "order"
+}{
+    "action": "update",
+    "data": [
+        {
+            "account": 259018,
+            "avgPx": 7386.5,
+            "clOrdID": "",
+            "cumQty": 21,
+            "leavesQty": 0,
+            "ordStatus": "Filled",
+            "orderID": "d3571be4-5e53-bf23-7fd9-049a95c8ce7f",
+            "symbol": "XBTUSD",
+            "timestamp": "2019-12-06T15:07:43.686Z",
+            "workingIndicator": false
+        }
+    ],
+    "table": "order"
+}
