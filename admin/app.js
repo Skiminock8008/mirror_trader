@@ -14,10 +14,12 @@ const body_parser = require('body-parser');
 
 //modules
 const auth = require('./modules/auth');
+const app_process = require('./modules/app_process');
 
 // routes
 const route_page = require('./routing/page');
 const route_update = require('./routing/update');
+const route_bot_controller = require('./routing/bot_controller');
 
 //config
 const config = require('./config');
@@ -47,12 +49,15 @@ class Master {
 
         // references
         ref.auth = new auth();
+        ref.app_process = new app_process();
         ref.config = config;
 
         // apply routes
         ref.routes = [];
         ref.routes['page'] = new route_page(app, ref);
         ref.routes['update'] = new route_update(app, ref);
+        ref.routes['bot_controller'] = new route_bot_controller(app, ref);
+        ref.routes['']
         
         for (let r in ref.routes) {
             let route = ref.routes[r];

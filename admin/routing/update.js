@@ -36,29 +36,44 @@ class RouteUpdate {
         // Update settings
         app.post("/settings/update", ref.auth.do, async function (req, res) {
 
+            //Loop through every exchange (might be bit excessive, can be changed in future)
             for (const x in exchanges) {
                 let ex = exchanges[x];
 
-                ref.settings[ex].main.api_key = req.body.settings[ex].main.api_key;
-                ref.settings[ex].main.api_secret = req.body.settings[ex].main.api_secret;
-    
-                let clients = Object.keys(req.body.settings[ex].clients).length;
-                  
-                for(let i = 1; i <= clients; i++) {
-                  if(ref.settings[ex].clients["client" + i] == undefined) {
-                    ref.settings[ex].clients = {...ref.settings[ex].clients, 
-                                               ["client" + i]: {"name": ["client" + i], 
-                                                                "api_key": "",
-                                                                "api_secret": "" }}
-                  }             
-                    if(req.body.settings[ex].clients["client" + i].api_key != "") {
-                    ref.settings[ex].clients["client" + i].name = req.body.settings[ex].clients["client" + i].name;
-                    ref.settings[ex].clients["client" + i].api_key = req.body.settings[ex].clients["client" + i].api_key;
-                    ref.settings[ex].clients["client" + i].api_secret = req.body.settings[ex].clients["client" + i].api_secret;
-                    } else {
-                        delete ref.settings[ex].clients["client" + i];
-                    }
+                //Update main api keys if they changed
+                let new_client = req.body.settings[ex].main;
+                let old_client = ref.settings[ex].main;
+
+                if (new_client.api_key != old_client.api_key) {
+                    old_client.api_key = new_client.api_key;
                 }
+                if (new_client.api_secret != old_client.api_secret) {
+                    old_client.api_secret = new_client.api_secret
+                }
+
+                for (let i in req.body.settings[ex].clients)  {
+                    
+                    let w = i.replace(/\D/g, "");
+                    let new_client = req.body.settings[ex].clients[i];       
+                    let old_client = ref.settings[ex].clients[i];
+
+                    if(old_client == undefined) {
+                        ref.settings[ex].clients = {...ref.settings[ex].clients, 
+                                                   [i]: {"name": "client" + w, 
+                                                                    "api_key": new_client.api_key,
+                                                                    "api_secret": new_client.api_secret }}
+                      }    else {  
+                        if(new_client.api_key != "" || new_client.api_secret != "") {
+                            old_client.name = new_client.name;
+                            old_client.api_key = new_client.api_key;
+                            old_client.api_secret = new_client.api_secret;
+                        } else {
+                            delete ref.settings[ex].clients[i];
+                        }
+                    }
+
+                }
+                  
             }
 
             save();

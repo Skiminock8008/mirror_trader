@@ -54,6 +54,37 @@
        </div>
 
        <button class="update_form" role="button">Save</button>
+
+
+
+       <nav class="bp3-navbar bp3">
+        <div>
+            <div class="bp3-navbar-group bp3-align-left">
+                <a href="/"> <img class="header-logo <%=ex%>_logo" src="/src/images/logo.png" /> </a>
+
+                <div class="bp3-navbar-heading bold-text">
+                    Mirror Bot
+                </div>
+
+                <label class="bp3-switch bp3-align-right .modifier">
+
+                    <button id="turn_on_<%=ex%>" class="bp3-button bp3-intent-success turning_button" role="button">
+                        Start
+                    </button>
+
+                    <button id="turn_off_<%=ex%>" class="bp3-button bp3-intent-danger turning_button" role="button">
+                        Stop
+                    </button>
+                </label>
+
+            </div>
+            <div class="bp3-navbar-group bp3-align-right">
+                
+                <a href="/" class="bot_status" onclick="return false"></a>
+
+            </div>
+        </div>
+    </nav>
       
 </div>
 

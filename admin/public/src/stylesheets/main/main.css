@@ -63,6 +63,11 @@ label {
     justify-content: space-between;
     flex-wrap: wrap;
 }
+.bp3-navbar {
+    margin: -20px;
+    width: auto;
+    margin-top: 20px;
+}
 /*---*/
 
 
