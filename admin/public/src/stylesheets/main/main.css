@@ -34,7 +34,6 @@ label {
 .header-logo {
     width: 3em;
     margin: 0px 10px;
-
     vertical-align: middle;
 }
 .save_history {
@@ -106,8 +105,41 @@ label {
 .new_client_btn {
     margin-top: 2em;
 }
-/* --- */
-
 .client {
     margin-bottom: 0.5em;
 }
+/* --- */
+
+
+
+
+.active_exchange {
+    /* -webkit-animation: pulse 2.5s ease-in-out infinite alternate;
+    animation: pulse 2.5s ease-in-out infinite alternate; */
+    background: #0d8050;
+  }
+
+/*Animations*/
+/* @-webkit-keyframes pulse {
+    0% {
+      background: transparent;
+    }
+    50% {
+      background: #0d8050;
+    }
+    100% {
+      background: transparent;
+    }
+  }
+  @keyframes pulse {
+    0% {
+      background: transparent;
+    }
+    50% {
+      background: #0d8050;
+    }
+    100% {
+      background: transparent;
+    }
+  } */
+/* --- */

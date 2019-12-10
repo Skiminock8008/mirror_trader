@@ -80,7 +80,7 @@ class RouteUpdate {
 
             res.json({
                 'status': 1,
-                'message': 'Saved',
+                'message': 'Saved.',
             });
 
         });
@@ -94,7 +94,7 @@ class RouteUpdate {
 
             res.json({
                 'status': 1,
-                'message': `Client ${id} deleted`,
+                'message': `Client ${id} deleted.`,
             });
         });
     }

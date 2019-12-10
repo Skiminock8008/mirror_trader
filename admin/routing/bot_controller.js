@@ -26,13 +26,13 @@ class RouteBotController {
         app.post("/settings/turn_on_bitmex", ref.auth.do, async function (req, res) {
             console.log(`/settings/turn_on_bitmex/`);
 
-            let result = await ref.app_process.start('main_account.py');
+            let result = await ref.app_process.start('main_account.py', 'bitmex');
 
             let message = '';
             if (result == true) {
-                message = 'Bitmex bot is turned on';
+                message = 'Bitmex bot is online.';
             } else {
-                message = 'Error in turning on bitmex bot!';
+                message = 'Failed to start. Contact support!';
             }
 
             res.json({
@@ -45,19 +45,22 @@ class RouteBotController {
             console.log(`/settings/turn_off_bitmex/`);
 
             let result = await ref.app_process.stop('main_account.py');
+            let is_running_bitmex = await ref.app_process.is_running('main_account.py');
             
             let message = '';
             if (result == true) {
-                message = 'Bitmex bot is turned off';
+                message = 'Bitmex bot is offline.';
             } else {
-                message = 'Error in turning off bitmex bot!';
+                message = 'Failed to stop. Contact support!';
             }
 
-
+            if(is_running_bitmex == false) {
             res.json({
                 'result': result,
                 'message': message,
             });
+            }
+
         });
 
     }

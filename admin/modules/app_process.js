@@ -199,12 +199,12 @@ class ModuleAppProcess {
     /**
      * Start process
      */
-    async start(name) {
+    async start(name, exchange) {
         let ref = this;
 
         try {
             let args = [
-                __dirname + '/../../engine/bitmex/' + name,
+                __dirname + `/../../engine/${exchange}/` + name,
             ];
             
             console.log(args);

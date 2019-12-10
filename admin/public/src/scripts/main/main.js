@@ -73,9 +73,11 @@ let CTX = {
                 if (is_running) {
                     $("#turn_on_bitmex").hide();
                     $("#turn_off_bitmex").show();
+                    $(".bitmex_logo").addClass("active_exchange");
                 } else {
                     $("#turn_on_bitmex").show();
                     $("#turn_off_bitmex").hide();
+                    $(".bitmex_logo").removeClass("active_exchange");
                 }
             }
         })
@@ -90,7 +92,7 @@ let CTX = {
     // Modules
     TabSystem.init();
 
-    //Status checker
+    // Status checker
     CTX.check_status();
     setInterval(function () {
         CTX.check_status();
@@ -98,6 +100,33 @@ let CTX = {
 
     $(".turning_button").on('click', function() {
         CTX.check_status();
+    })
+
+
+    // Message on stop
+    $('[id*="turn_off"]').on('click', function(e) {
+
+        e.preventDefault();
+
+        let id = e.target.id;
+        let exchange;
+
+        for (const x in exchanges) {
+            if (id.includes(exchanges[x])) {
+                exchange = exchanges[x];
+            }
+        }
+
+        messages.push(CTX_TIME.get_time() + " - " + `Shutting down ${exchange} bot...`);
+
+        save_history.empty();
+        for (let i in messages) {
+            if (messages.length > 3) {
+                messages.shift(i);
+            }
+            save_history.append(`<span>${messages[i]} &nbsp;</span>`);
+            save_history.scrollTop = save_history.scrollHeight;
+        }
     })
 
 

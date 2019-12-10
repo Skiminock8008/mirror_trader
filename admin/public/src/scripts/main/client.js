@@ -1,3 +1,5 @@
+const exchanges = ["bitmex", "binance", "bybit", "verbit"];
+
 let CTX_CLIENT = {
 
     //Calculate the existing inputs and add +1 to make space for the new one
@@ -60,7 +62,6 @@ let CTX_CLIENT = {
     //Append delete button next to each input. It calculates which client its associated with and runs function on it
     delete_me: function(e) {
         let id = e.replace(/\D/g, "");
-        let exchanges = ["bitmex", "binance", "bybit", "verbit"];
         let exchange;
 
         for (const x in exchanges) {
