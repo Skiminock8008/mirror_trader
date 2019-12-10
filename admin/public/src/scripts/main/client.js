@@ -2,8 +2,8 @@ const exchanges = ["bitmex", "binance", "bybit", "verbit"];
 
 let CTX_CLIENT = {
 
-    //Calculate the existing inputs and add +1 to make space for the new one
-    //If earlier input has been deleted fill that space first
+    // Calculate the existing inputs and add +1 to make space for the new one
+    // If earlier input has been deleted fill that space first
     count_client: function(exchange) {
         let num_of_clients = $(`input[class*="client_${exchange}_apikey"]`).length;
         for(let i = 1; i <= num_of_clients; i++) {
@@ -14,7 +14,7 @@ let CTX_CLIENT = {
         return num_of_clients + 1; 
     },
 
-    //Now that we have info we need from count_client, we can generate input html
+    // Now that we have info we need from count_client, we can generate input html
     generate_html: function(pos, exchange) {
         // Main div
         let html = `<div class="client ${exchange}_client${pos}_div">`;
@@ -26,7 +26,7 @@ let CTX_CLIENT = {
         html += ` Api Key </label>`;
         // Input of API KEY
         html += `<input type="text" id="client_${exchange}_apikey[client${pos}]"`;
-        html += ` class="client_${exchange}_apikey[client${pos}]"`; 
+        html += ` class="client_${exchange}_apikey[client${pos}] bp3-input"`; 
         html += ` name="settings[${exchange}][clients][client${pos}][api_key]"`;
         //html += ` value="<%= settings.${exchange}.clients.client${pos}.api_key %>"`;
         html += `></input>`
@@ -36,16 +36,17 @@ let CTX_CLIENT = {
         html += " Api Secret </label>";
         // Input of API SECRET
         html += `<input type="text" id="client_${exchange}_apisecret[client${pos}]"`;
-        html += ` class="client_${exchange}_apisecret[client${pos}]"`; 
+        html += ` class="client_${exchange}_apisecret[client${pos}] bp3-input"`; 
         html += ` name="settings[${exchange}][clients][client${pos}][api_secret]"`;
         //html += ` value="<%= settings.${exchange}.clients.client${pos}.api_secret %>"`;
         html += `></input>`
 
        
         //Button
-        html += ` <button class="delete_client delete_${exchange}[client${pos}]" `;
-        html += `type="button" onclick="return CTX_CLIENT.delete_me(this.className)">`
-        html += `Delete me </button>`;
+        html += ` <button class="delete_client bp3-button bp3-intent-danger bp3-small"`;
+        html += ` id="delete_${exchange}[client${pos}]"`
+        html += ` type="button" onclick="return CTX_CLIENT.delete_me(this.id)">`
+        html += `X </button>`;
 
         html += `</div>`
 
@@ -55,11 +56,21 @@ let CTX_CLIENT = {
     add_html: function(exchange) {
         let html = this.generate_html(this.count_client(exchange), exchange);
         $(`.adder_client_${exchange}`).append(html);
+
+        // Focus on api key field once added
+        clicked_btn = $(`.${exchange}_new`);
+        all_inputs = clicked_btn.closest("div").find(`input[class*=client_${exchange}_apikey]`);
+        last_input = all_inputs.last();
+
+        last_input.focus();
+
+        console.log(last_input);
+
         return false;
     },
 
     
-    //Append delete button next to each input. It calculates which client its associated with and runs function on it
+    // Append delete button next to each input. It calculates which client its associated with and runs function on it
     delete_me: function(e) {
         let id = e.replace(/\D/g, "");
         let exchange;

@@ -10,13 +10,13 @@
            <label for="main_<%=ex%>_apikey">
                Api Key
            </label>
-           <input type="text" id="main_<%=ex%>_apikey" class="main_<%=ex%>_apikey"
+           <input type="text" id="main_<%=ex%>_apikey" class="main_<%=ex%>_apikey bp3-input"
                   name="settings[<%=ex%>][main][api_key]" value="<%= settings[ex].main.api_key %>">
                   
            <label for="main_ex_apisecret">
                Api Secret
            </label>
-           <input type="text" id="main_<%=ex%>_apisecret" class="main_<%=ex%>_apisecret"
+           <input type="text" id="main_<%=ex%>_apisecret" class="main_<%=ex%>_apisecret bp3-input"
                   name="settings[<%=ex%>][main][api_secret]" value="<%= settings[ex].main.api_secret %>">
        </div>
        
@@ -33,27 +33,29 @@
                 <label for="client_<%=ex%>_apikey[<%=i%>]">
                         Api Key
                 </label>
-                    <input type="text" id="client_<%=ex%>_apikey[<%=i%>]" class="client_<%=ex%>_apikey[<%=i%>]"
+                    <input type="text" id="client_<%=ex%>_apikey[<%=i%>]" class="client_<%=ex%>_apikey[<%=i%>] bp3-input"
                            name="settings[<%=ex%>][clients][<%=i%>][api_key]" value="<%= settings[ex].clients[i].api_key %>" />
             
                 <label for="client_<%=ex%>_apisecret[<%=i%>]">
                         Api Secret
                 </label>
-                    <input type="text" id="client_<%=ex%>_apisecret[<%=i%>]" class="client_<%=ex%>_apisecret[<%=i%>]"
+                    <input type="text" id="client_<%=ex%>_apisecret[<%=i%>]" class="client_<%=ex%>_apisecret[<%=i%>] bp3-input"
                            name="settings[<%=ex%>][clients][<%=i%>][api_secret]" value="<%= settings[ex].clients[i].api_secret %>" />
                     
-                    <button class="delete_client delete_<%=ex%>[<%=i%>]" type="button" onclick="return CTX_CLIENT.delete_me(this.className)">Delete me</button>
+                    <button class="delete_client bp3-button bp3-intent-danger bp3-small" id="delete_<%=ex%>[<%=i%>]" 
+                            type="button" onclick="return CTX_CLIENT.delete_me(this.id)">X</button>
             </div>
             
               <% } %>
             <% } %>
         </div>
        
-           <button class="new_client_btn <%=ex%>_new" onclick="return CTX_CLIENT.add_html('<%=ex%>')">Add new client</button>
+           <button class="new_client_btn <%=ex%>_new bp3-button bp3-intent-danger bp3-minimal bp3-icon-add" 
+                   onclick="return CTX_CLIENT.add_html('<%=ex%>')">Add new client</button>
        
        </div>
 
-       <button class="update_form" role="button">Save</button>
+       <button class="update_form bp3-button bp3-intent-success bp3-icon-saved" role="button">Save</button>
 
 
 
@@ -68,11 +70,11 @@
 
                 <label class="bp3-switch bp3-align-right .modifier">
 
-                    <button id="turn_on_<%=ex%>" class="bp3-button bp3-intent-success turning_button" role="button">
+                    <button id="turn_on_<%=ex%>" class="bp3-button bp3-intent-success turning_button bp3-icon-play" role="button">
                         Start
                     </button>
 
-                    <button id="turn_off_<%=ex%>" class="bp3-button bp3-intent-danger turning_button" role="button">
+                    <button id="turn_off_<%=ex%>" class="bp3-button bp3-intent-danger turning_button bp3-icon-stop" role="button">
                         Stop
                     </button>
                 </label>

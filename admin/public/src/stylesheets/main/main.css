@@ -103,10 +103,24 @@ label {
     width: 5em;
 }
 .new_client_btn {
-    margin-top: 2em;
+    margin-top: 0em;
+    margin-bottom: 2em;
+    padding-left: 0;
+    color: #c34e67 !important;
+}
+.new_client_btn:focus {
+    outline: none !important;
 }
 .client {
     margin-bottom: 0.5em;
+}
+.delete_client {
+    min-width: 25px !important;
+    min-height: 25px !important;
+}
+.bp3-input {
+    height: 25px !important;
+    background: rgb(255, 243, 243);
 }
 /* --- */
 
@@ -114,13 +128,13 @@ label {
 
 
 .active_exchange {
-    /* -webkit-animation: pulse 2.5s ease-in-out infinite alternate;
-    animation: pulse 2.5s ease-in-out infinite alternate; */
-    background: #0d8050;
+    -webkit-animation: pulse 2.5s ease-in-out infinite alternate;
+    animation: pulse 2.5s ease-in-out infinite alternate;
+    /* background: #0d8050; */
   }
 
 /*Animations*/
-/* @-webkit-keyframes pulse {
+@-webkit-keyframes pulse {
     0% {
       background: transparent;
     }
@@ -141,5 +155,5 @@ label {
     100% {
       background: transparent;
     }
-  } */
+  }
 /* --- */

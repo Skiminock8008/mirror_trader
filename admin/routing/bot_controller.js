@@ -45,7 +45,6 @@ class RouteBotController {
             console.log(`/settings/turn_off_bitmex/`);
 
             let result = await ref.app_process.stop('main_account.py');
-            let is_running_bitmex = await ref.app_process.is_running('main_account.py');
             
             let message = '';
             if (result == true) {
@@ -54,12 +53,13 @@ class RouteBotController {
                 message = 'Failed to stop. Contact support!';
             }
 
-            if(is_running_bitmex == false) {
+            setTimeout(function(){
             res.json({
                 'result': result,
                 'message': message,
             });
-            }
+            },5000);
+            
 
         });
 

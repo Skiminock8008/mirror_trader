@@ -57,7 +57,6 @@ class Master {
         ref.routes['page'] = new route_page(app, ref);
         ref.routes['update'] = new route_update(app, ref);
         ref.routes['bot_controller'] = new route_bot_controller(app, ref);
-        ref.routes['']
         
         for (let r in ref.routes) {
             let route = ref.routes[r];
