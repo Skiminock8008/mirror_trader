@@ -18,8 +18,12 @@ let CTX_CLIENT = {
     generate_html: function(pos, exchange) {
         // Main div
         let html = `<div class="client ${exchange}_client${pos}_div">`;
+        html += ` <div style="display: flex;">`
         html += ` <input class="client_name" name="settings[${exchange}][clients][client${pos}][name]"`;
         html += ` value="Client ${pos}" />`;
+        html += ` <label for="${exchange}_client${pos}_testcheckbox"> Testnet? </label>`;
+        html += ` <input type="checkbox" id="${exchange}_client${pos}_testcheckbox" name="settings[${exchange}][clients][client${pos}][net]"`;
+        html += ` value="true" style="vertical-align: middle;"/> </div>`
 
         // Label for API KEY
         html += ` <label for="client_${exchange}_apikey[client${pos}]">`;

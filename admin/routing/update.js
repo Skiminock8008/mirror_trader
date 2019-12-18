@@ -51,20 +51,24 @@ class RouteUpdate {
                     old_client.api_secret = new_client.api_secret
                 }
 
+                old_client.net = new_client.net ? "testnet" : "mainnet";
+
                 for (let i in req.body.settings[ex].clients)  {
                     
                     let w = i.replace(/\D/g, "");
-                    let new_client = req.body.settings[ex].clients[i];       
+                    let new_client = req.body.settings[ex].clients[i];
                     let old_client = ref.settings[ex].clients[i];
 
                     if(old_client == undefined) {
                         ref.settings[ex].clients = {...ref.settings[ex].clients, 
                                                    [i]: {"name": "client" + w, 
+                                                                    "net": new_client.net ? "testnet" : "mainnet",
                                                                     "api_key": new_client.api_key,
                                                                     "api_secret": new_client.api_secret }}
                       }    else {  
                         if(new_client.api_key != "" || new_client.api_secret != "") {
                             old_client.name = new_client.name;
+                            old_client.net = new_client.net ? "testnet" : "mainnet";
                             old_client.api_key = new_client.api_key;
                             old_client.api_secret = new_client.api_secret;
                         } else {

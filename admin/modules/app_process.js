@@ -1,5 +1,5 @@
 const child_process = require('child_process');
-
+const fs = require('fs');
 
 class ModuleAppProcess {
 
@@ -234,6 +234,23 @@ class ModuleAppProcess {
             console.log(`robot_controller: start(): ${err}`);
         }
         return true;
+    }
+
+    async console_message(exchange) {
+        let ref = this;
+        let messages = [];
+        let file = __dirname + `/../../engine/${exchange}/console_messages.txt`;
+
+        return new Promise(resolve => {
+            fs.readFile(file, function(err, data) {
+                if(err) throw err;
+                let array = data.toString().split("\n");
+                for(let i in array) {
+                    messages.push(array[i]);
+                }
+                resolve(messages)
+            });
+        })
     }
 
 }

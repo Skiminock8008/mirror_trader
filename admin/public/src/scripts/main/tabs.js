@@ -11,14 +11,14 @@ let TabSystem = {
     //Reset styling and add event listeners to add style once something is clicked
     init: function () {
         this.resetTabs();
-        this.variables.contents[0].style = `display: block;`;
+        this.variables.contents[0].style = `display: flex;`;
         this.variables.tabBars[0].style = `background-color: #ad7580; color: #000 !important`;
         window.addEventListener('keydown', this.checkTab);
 
         this.variables.tabBars.forEach(function (tabBar, tabBarIndex) {
             tabBar.addEventListener("click", function () {
                 TabSystem.resetTabs()
-                TabSystem.variables.contents[tabBarIndex].style = `display: block;`
+                TabSystem.variables.contents[tabBarIndex].style = `display: flex;`
                 this.style = `background-color: #ad7580; color: #000; !important`
             })
         })

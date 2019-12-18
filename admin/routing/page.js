@@ -47,9 +47,11 @@ class RoutePage {
         app.get("/status", ref.auth.do, async function (req, res) {
 
             let is_running_bitmex = await ref.app_process.is_running('main_account.py');
+            let bitmex_messages = await ref.app_process.console_message('bitmex');
 
             res.json({
                 'is_running_bitmex': is_running_bitmex,
+                'bitmex_messages': bitmex_messages
             })
         });
 

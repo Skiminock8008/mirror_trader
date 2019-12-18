@@ -4,3 +4,5 @@ __pycache__
 *.pyc
 *.cookie
 engine/tmp/
+data/
+orders.json

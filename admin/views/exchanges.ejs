@@ -1,35 +1,57 @@
 <% for (const x in exchanges) { %> 
     <% let ex = exchanges[x] %>
 
-<div class="bp3-card bp3-elevation-3 bp3 <%=ex%> .modifier">
+<!-- Start of Exchange Card -->
+<div class="bp3-card bp3-elevation-3 bp3 <%=ex%> .modifier" style="background:red;">
        
-       <div class="main_<%=ex%>">
+
+
+    <!-- Master/Client Accounts Settings -->
+    <div class="account_settings">
+        <div class="main_<%=ex%>">
         
-           <h5>MASTER ACCOUNT</h5>
+            <h5>MASTER ACCOUNT</h5>
+            
+            <div style="display:flex;">
+                <label for="testcheckbox_main">
+                    Testnet?
+                </label>
+                <input type="checkbox" id="testcheckbox_main" name="settings[<%=ex%>][main][net]" 
+                value="true" style="vertical-align: middle;" <%=settings[ex].main.net ? "checked" : "" %>   />
+            </div>
+
+            <label for="main__apikey">
+                Api Key
+            </label>
+            <input type="text" id="main_<%=ex%>_apikey" class="main_<%=ex%>_apikey bp3-input"
+                    name="settings[<%=ex%>][main][api_key]" value="<%= settings[ex].main.api_key %>">
+                    
+            <label for="main_ex_apisecret">
+                Api Secret
+            </label>
+            <input type="text" id="main_<%=ex%>_apisecret" class="main_<%=ex%>_apisecret bp3-input"
+                    name="settings[<%=ex%>][main][api_secret]" value="<%= settings[ex].main.api_secret %>">
+        </div>
        
-           <label for="main_<%=ex%>_apikey">
-               Api Key
-           </label>
-           <input type="text" id="main_<%=ex%>_apikey" class="main_<%=ex%>_apikey bp3-input"
-                  name="settings[<%=ex%>][main][api_key]" value="<%= settings[ex].main.api_key %>">
-                  
-           <label for="main_ex_apisecret">
-               Api Secret
-           </label>
-           <input type="text" id="main_<%=ex%>_apisecret" class="main_<%=ex%>_apisecret bp3-input"
-                  name="settings[<%=ex%>][main][api_secret]" value="<%= settings[ex].main.api_secret %>">
-       </div>
-       
+
        <div class="client_<%=ex%>">
-       
+
            <h5>CLIENT ACCOUNTS</h5>
-       
+
         <div class="adder_client_<%=ex%>">
             <% for (let i in settings[ex].clients) { %>
               <%  if(settings[ex].clients[i].api_key != "" && settings[ex].clients[i].api_key != undefined) { %>
                 <% let w = i.replace(/\D/g, "") %>
             <div class="client <%=ex%>_<%=i%>_div">
-                <input class="client_name" name="settings[<%=ex%>][clients][<%=i%>][name]" value="Client <%=w%>" />
+                <div style="display: flex;">
+                    <input class="client_name" name="settings[<%=ex%>][clients][<%=i%>][name]" value="Client <%=w%>" />
+                    <label for="<%=ex%>_<%=i%>_testcheckbox">
+                        Testnet?
+                    </label>
+                    <input type="checkbox" id="<%=ex%>_<%=i%>_testcheckbox" name="settings[<%=ex%>][clients][<%=i%>][net]" 
+                    value="true" style="vertical-align: middle;" <%=settings[ex].clients[i].net ? "checked" : "" %>   />
+                </div>
+
                 <label for="client_<%=ex%>_apikey[<%=i%>]">
                         Api Key
                 </label>
@@ -44,6 +66,7 @@
                     
                     <button class="delete_client bp3-button bp3-intent-danger bp3-small" id="delete_<%=ex%>[<%=i%>]" 
                             type="button" onclick="return CTX_CLIENT.delete_me(this.id)">X</button>
+                    
             </div>
             
               <% } %>
@@ -57,15 +80,27 @@
 
        <button class="update_form bp3-button bp3-intent-success bp3-icon-saved" role="button">Save</button>
 
+    </div>
+    <!-- Master/Client Accounts Settings END -->
 
 
-       <nav class="bp3-navbar bp3">
+
+    <!-- Bot Console Messages -->
+    <div class="console_messages" id="<%=ex%>_console_messages" title="Latest actions">
+            $ &nbsp;
+    </div>
+    <!-- Bot Console Mesages END -->
+
+
+
+    <!-- Footer START/STOP the bot -->
+    <nav class="bp3-navbar bp3">
         <div>
             <div class="bp3-navbar-group bp3-align-left">
                 <a href="/"> <img class="header-logo <%=ex%>_logo" src="/src/images/logo.png" /> </a>
 
                 <div class="bp3-navbar-heading bold-text">
-                    Mirror Bot
+                    <%=ex%> bot
                 </div>
 
                 <label class="bp3-switch bp3-align-right .modifier">
@@ -87,7 +122,11 @@
             </div>
         </div>
     </nav>
-      
+    <!-- Footer START/STOP the bot  -->
+
+
+
 </div>
+<!-- End of Exchange Card -->
 
 <% } %>

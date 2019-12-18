@@ -25,6 +25,16 @@ label {
     color: #c34e67;
     font-weight: bold;
 }
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
 /* Basic color scheme*/
 
 
@@ -39,7 +49,6 @@ label {
 .save_history {
     /*width: calc(100% - 4em);
     margin-left: 2em; */
-    vertical-align: bottom;
     font-family: monospace;
     font-size: 0.81em;
     cursor: pointer;
@@ -48,7 +57,8 @@ label {
     overflow-x: hidden;
     overflow-y: hidden;
     height: 40px;
-    min-width: 397px;
+    min-width: 50em;
+    font-weight: bold;
     /* margin-top: 6em;
     margin-bottom: 2em; */
 }
@@ -57,14 +67,27 @@ label {
     font-size: 1.0em;
     height: 1.2em;
 }
+.console_messages {
+    max-height: 30em;
+    min-height: 30em;
+    font-family: monospace;
+    font-size: 0.81em;
+    cursor: pointer;
+    background-color: #111;
+    color: rgb(233, 19, 19);
+    overflow: scroll;
+    overflow-x: hidden;
+    min-width: 50em;
+    font-weight: bold;
+}
 .tabs {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 .bp3-navbar {
-    margin: -20px;
-    width: auto;
+    align-self: flex-end;
+    width: 100%;
     margin-top: 20px;
 }
 /*---*/
@@ -94,7 +117,10 @@ label {
 
 /*Exchanges tab content*/
 .bp3-card {
+    justify-content: space-between;
+    flex-wrap: wrap;
     min-height: 20em;
+    padding: 20px 0px 0px 0px;
 }
 .client_name {
     margin: 0;
@@ -121,6 +147,9 @@ label {
 .bp3-input {
     height: 25px !important;
     background: rgb(255, 243, 243);
+}
+.account_settings {
+    padding-left: 20px;
 }
 /* --- */
 
@@ -157,3 +186,26 @@ label {
     }
   }
 /* --- */
+
+@media screen and (max-width: 1332px) {
+    .console_messages {
+        margin-left: 20px;
+        margin-top: 1em;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .console_messages {
+        margin-right: 20px;
+        min-width: 0;
+    }
+    .save_history {
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 565px) {
+    input, label {
+        display: block;
+    }
+}

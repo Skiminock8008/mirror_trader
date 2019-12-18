@@ -79,6 +79,12 @@ let CTX = {
                     $("#turn_off_bitmex").hide();
                     $(".bitmex_logo").removeClass("active_exchange");
                 }
+                $("#bitmex_console_messages").empty();
+                $("#bitmex_console_messages").append(`bitmex-1.0$ <br>`)
+                for(let i in data['bitmex_messages']) {
+                    $("#bitmex_console_messages").append(`<span>${data['bitmex_messages'][i]} <br> </span>`);
+                    $("#bitmex_console_messages").scrollTop($("#bitmex_console_messages")[0].scrollHeight);
+                }
             }
         })
     },
