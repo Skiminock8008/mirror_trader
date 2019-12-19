@@ -57,6 +57,59 @@ let CTX = {
     },
   ],
 
+
+    is_error: function(msg) {
+        let words = msg.split(' ');
+        let errors = ['error', 'exception', 'fail', 'api', 'line', 'invalid', 'file', 'traceback'];
+        
+        let found, targetMap, i, j, cur;
+    
+        found = false;
+        targetMap = {};
+        
+        // Put all values in the `target` array into a map, where
+        //  the keys are the values from the array
+        for (i = 0, j = words.length; i < j; i++) {
+            cur = words[i].toLowerCase();
+            targetMap[cur] = true;
+        }
+        
+        // Loop over all items in the `toMatch` array and see if any of
+        //  their values are in the map from before
+        for (i = 0, j = errors.length; !found && (i < j); i++) {
+            cur = errors[i].toLowerCase();
+            found = !!targetMap[cur];
+            // If found, `targetMap[cur]` will return true, otherwise it
+            //  will return `undefined`...that's what the `!!` is for
+        }
+        
+        return found;
+    },  
+
+    check_status_handler: function(data, ex) {
+        let is_running = data[`is_running_${ex}`];
+
+        if (is_running) {
+            $(`#turn_on_${ex}`).hide();
+            $(`#turn_off_${ex}`).show();
+            $(`.${ex}_logo`).addClass("active_exchange");
+        } else {
+            $(`#turn_on_${ex}`).show();
+            $(`#turn_off_${ex}`).hide();
+            $(`.${ex}_logo`).removeClass("active_exchange");
+        }
+        $(`#${ex}_console_messages`).empty();
+        $(`#${ex}_console_messages`).append(`<span style='color: #b7b7b0'>${ex}-1.0$ </span> <br>`)
+        for(let i in data[`${ex}_messages`]) {
+            if(CTX.is_error(data[`${ex}_messages`][i])) {
+                $(`#${ex}_console_messages`).append(`<span style='color:#e91313'>${data[`${ex}_messages`][i]} <br> </span>`);
+            } else {
+                $(`#${ex}_console_messages`).append(`<span style='color:#0d8050'>${data[`${ex}_messages`][i]} <br> </span>`);
+            }
+            $(`#${ex}_console_messages`).scrollTop($(`#${ex}_console_messages`)[0].scrollHeight);
+        }
+  },
+
     /**
      * Check if robot is running
      */
@@ -69,22 +122,9 @@ let CTX = {
             },
             dataType: "json",
             success: function (data) {
-                var is_running = data["is_running_bitmex"];
-                if (is_running) {
-                    $("#turn_on_bitmex").hide();
-                    $("#turn_off_bitmex").show();
-                    $(".bitmex_logo").addClass("active_exchange");
-                } else {
-                    $("#turn_on_bitmex").show();
-                    $("#turn_off_bitmex").hide();
-                    $(".bitmex_logo").removeClass("active_exchange");
-                }
-                $("#bitmex_console_messages").empty();
-                $("#bitmex_console_messages").append(`bitmex-1.0$ <br>`)
-                for(let i in data['bitmex_messages']) {
-                    $("#bitmex_console_messages").append(`<span>${data['bitmex_messages'][i]} <br> </span>`);
-                    $("#bitmex_console_messages").scrollTop($("#bitmex_console_messages")[0].scrollHeight);
-                }
+                for (let i = 0; i < exchanges.length; i++){
+                    CTX.check_status_handler(data, exchanges[i]);
+                  }
             }
         })
     },

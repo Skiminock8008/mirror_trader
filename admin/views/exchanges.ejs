@@ -13,10 +13,10 @@
             <h5>MASTER ACCOUNT</h5>
             
             <div style="display:flex;">
-                <label for="testcheckbox_main">
+                <label for="<%=ex%>_main_testcheckbox">
                     Testnet?
                 </label>
-                <input type="checkbox" id="testcheckbox_main" name="settings[<%=ex%>][main][net]" 
+                <input type="checkbox" id="<%=ex%>_main_testcheckbox" name="settings[<%=ex%>][main][net]" 
                 value="true" style="vertical-align: middle;" <%=settings[ex].main.net ? "checked" : "" %>   />
             </div>
 
