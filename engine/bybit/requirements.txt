@@ -1,0 +1,2 @@
+bybit==0.2.2
+keyboard==0.13.4

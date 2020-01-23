@@ -16,6 +16,8 @@ __DIR__ = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, __DIR__)
 sys.path.insert(0, __DIR__ + '/../')
 
+from modules.helper import *
+
 # ------ HELPER FUNCTIONS --------------
 def get_clients():
     return copy_clients
@@ -56,12 +58,12 @@ def init_copy_clients( MainBalance, resetArgs, symbols):
 			newClient = bitmex.bitmex(test=(testnet=='testnet'),api_key=bitmex_key, api_secret=bitmex_secret )
 			if resetArgs[0]:
 				upd = newClient.Order.Order_cancelAll().result()
-				print('CLIENT-'+accName+':: all orders were cancelled!')
+				console_message(accName+': all orders were cancelled!', 'bitmex')
 			if resetArgs[1]:
 				for sym in symbols:
 					upd = newClient.Order.Order_closePosition(symbol=sym).result()
 					print(upd)
-					print('CLIENT-'+accName+':: position on ' + sym + ' was closed!')
+					console_message(accName+': position on ' + sym + ' was closed!', 'bitmex')
 					
 			thisBalance = newClient.User.User_getMargin().result()
 			copy_clients.append( newClient )
@@ -74,8 +76,7 @@ def init_copy_clients( MainBalance, resetArgs, symbols):
 			print('Client-to-main ratio balance: '+ str(copy_clients[-1].BlncRate))
 			clientOrders[key_secret[0]] = {}
 		except Exception as ex:
-			print('Client Initialization failed: '+ str(ex) )
-     
+			console_message('Client Initialization failed: '+ str(ex), 'bitmex')
 			
 
 def update_copy_clients( MainBalance, resetArgs, symbols):
@@ -102,12 +103,12 @@ def update_copy_clients( MainBalance, resetArgs, symbols):
 			newClient = bitmex.bitmex(test=(testnet=='testnet'),api_key=bitmex_key, api_secret=bitmex_secret )
 			if resetArgs[0]:
 				upd = newClient.Order.Order_cancelAll().result()
-				print('CLIENT-'+accName+':: all orders were cancelled!')
+				console_message(accName+': all orders were cancelled!', 'bitmex')
 			if resetArgs[1]:
 				for sym in symbols:
 					upd = newClient.Order.Order_closePosition(symbol=sym).result()
 					print(upd)
-					print('CLIENT-'+accName+':: position on ' + sym + ' was closed!')
+					console_message(accName+': position on ' + sym + ' was closed!', 'bitmex')
 					
 			thisBalance = newClient.User.User_getMargin().result()
 			copy_clients.append( newClient )
@@ -120,8 +121,8 @@ def update_copy_clients( MainBalance, resetArgs, symbols):
 			print('Client-to-main ratio balance: '+ str(copy_clients[-1].BlncRate))
 			clientOrders[key_secret[0]] = {}
 		except Exception as ex:
-			print('Client Initialization failed: '+ str(ex) )
-     
+			console_message('Client Initialization failed: '+ str(ex), 'bitmex')
+
 
 
 def copy_order( client, message, count):
@@ -137,19 +138,19 @@ def copy_order( client, message, count):
 				upd = client.Order.Order_closePosition(symbol=symb).result()
 				bMessage = ''
 				if count==1:
-					bMessage = 'MASTER ACCOUNT:: Closed a Position, for the '+ upd[0]['symbol'] + ' pair \n\n'
-				clientMsg = 'CLIENT-'+client.accName+':: Closed a Position, Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair'
-				print(clientMsg)
+					bMessage = 'MASTER ACCOUNT: Closed a Position, for the '+ upd[0]['symbol'] + ' pair \n\n'
+				clientMsg = client.accName+': Closed a Position, Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair'
+				console_message(clientMsg, 'bitmex')
 				bMessage = bMessage + clientMsg
 			else:
 				ordQty = orderData['orderQty']*client.BlncRate
 				upd = client.Order.Order_new(symbol=symb, orderQty=ordQty, ordType='Market', side=ordSide).result()
-				#print('CLIENT-'+client.accName+':: Placed New Market Order, Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair')
+				#print('CLIENT-'+client.accName+': Placed New Market Order, Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair')
 				bMessage = ''
 				if count==1:
-					bMessage = 'MASTER ACCOUNT:: Placed New Market Order, Quantity: ' + str( orderData['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair \n\n'
-				clientMsg = 'CLIENT-'+client.accName+':: Placed New Market Order, Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair'
-				print(clientMsg)
+					bMessage = 'MASTER ACCOUNT: Placed New Market Order, Quantity: ' + str( orderData['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair \n\n'
+				clientMsg = client.accName+': Placed New Market Order, Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair'
+				console_message(clientMsg, 'bitmex')
 				bMessage = bMessage + clientMsg
 				
 		if orderData['ordType']=='Limit' and orderData['ordStatus']=='New':
@@ -166,11 +167,11 @@ def copy_order( client, message, count):
 				upd = client.Order.Order_new(symbol=symb, execInst=execInst, timeInForce=tIFrc, orderQty=ordQty, price=ordPrice, ordType='Limit', side=ordSide).result()
 			bMessage = ''
 			if count==1:
-				bMessage = 'MASTER ACCOUNT:: Placed a New Limit-Order, Price: ' + str(upd[0]['price']) + \
+				bMessage = 'MASTER ACCOUNT: Placed a New Limit-Order, Price: ' + str(upd[0]['price']) + \
 									' Quantity: ' + str(orderData['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair\n\n'						
-			clientMsg = 'CLIENT-'+client.accName+':: Placed a New Limit-Order, Price: ' + str(upd[0]['price']) + \
+			clientMsg = client.accName+': Placed a New Limit-Order, Price: ' + str(upd[0]['price']) + \
 					' Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair'
-			print(clientMsg)
+			console_message(clientMsg, 'bitmex')
 			bMessage = bMessage + clientMsg
 
 		if orderData['ordType']=='Stop' and orderData['ordStatus']=='New':
@@ -188,11 +189,11 @@ def copy_order( client, message, count):
 				upd = client.Order.Order_new(symbol=symb, execInst=execInst, timeInForce=tIFrc, orderQty=ordQty, ordType=ordType, side=ordSide , stopPx=ordStopPx).result()
 			bMessage = ''
 			if count==1:
-				bMessage = 'MASTER ACCOUNT:: Placed a New Stop-Market Order, Stopx: ' + str(upd[0]['stopPx']) + \
+				bMessage = 'MASTER ACCOUNT: Placed a New Stop-Market Order, Stopx: ' + str(upd[0]['stopPx']) + \
 					' Quantity: ' + str(orderData['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair \n\n'
-			clientMsg = 'CLIENT-'+client.accName+':: Placed a New Stop-Market Order, Stopx: ' + str(upd[0]['stopPx']) + \
+			clientMsg = client.accName+': Placed a New Stop-Market Order, Stopx: ' + str(upd[0]['stopPx']) + \
 					' Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair'
-			print(clientMsg)
+			console_message(clientMsg, 'bitmex')
 			bMessage = bMessage + clientMsg
 					
 		if orderData['ordType']=='StopLimit' and orderData['ordStatus']=='New':
@@ -206,11 +207,11 @@ def copy_order( client, message, count):
 			upd = client.Order.Order_new(symbol=symb, execInst=execInst, timeInForce=tIFrc, orderQty=ordQty, price=ordPrice, ordType='StopLimit', side=ordSide , stopPx=ordStopPx).result()	
 			bMessage = ''
 			if count==1:
-				bMessage = 'MASTER ACCOUNT:: Placed a New Stop-Limit Order, Price: ' + str(upd[0]['price']) + ' StopPx: ' + str(upd[0]['stopPx']) + \
+				bMessage = 'MASTER ACCOUNT: Placed a New Stop-Limit Order, Price: ' + str(upd[0]['price']) + ' StopPx: ' + str(upd[0]['stopPx']) + \
 					' Quantity: ' + str(orderData['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair \n\n'
-			clientMsg = 'CLIENT-'+client.accName+':: Placed a New Stop-Limit Order, Price: ' + str(upd[0]['price']) + ' StopPx: ' + str(upd[0]['stopPx']) + \
+			clientMsg =client.accName+': Placed a New Stop-Limit Order, Price: ' + str(upd[0]['price']) + ' StopPx: ' + str(upd[0]['stopPx']) + \
 					' Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair'
-			print(clientMsg)
+			console_message(clientMsg, 'bitmex')
 			bMessage = bMessage + clientMsg
 					
 		if orderData['ordType']=='MarketIfTouched' and orderData['ordStatus']=='New':
@@ -223,11 +224,11 @@ def copy_order( client, message, count):
 			upd = client.Order.Order_new(symbol=symb, execInst=execInst, timeInForce=tIFrc, orderQty=ordQty, ordType='MarketIfTouched', side=ordSide , stopPx=ordStopPx).result()	
 			bMessage = ''
 			if count==1:
-				bMessage = 'MASTER ACCOUNT:: Placed a New Take-Profit-Market Order, StopPx: ' + str(upd[0]['stopPx']) + \
+				bMessage = 'MASTER ACCOUNT: Placed a New Take-Profit-Market Order, StopPx: ' + str(upd[0]['stopPx']) + \
 					' Quantity: ' + str(orderData['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair \n\n'
-			clientMsg = 'CLIENT-'+client.accName+':: Placed a New Take-Profit-Market Order, StopPx: ' + str(upd[0]['stopPx']) + \
+			clientMsg = client.accName+': Placed a New Take-Profit-Market Order, StopPx: ' + str(upd[0]['stopPx']) + \
 					' Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair'
-			print(clientMsg)
+			console_message(clientMsg, 'bitmex')
 			bMessage = bMessage + clientMsg
 			
 		if orderData['ordType']=='LimitIfTouched' and orderData['ordStatus']=='New':
@@ -241,11 +242,11 @@ def copy_order( client, message, count):
 			upd = client.Order.Order_new(symbol=symb, execInst=execInst, timeInForce=tIFrc, orderQty=ordQty,  price=ordPrice, ordType='LimitIfTouched', side=ordSide , stopPx=ordStopPx).result()
 			bMessage = ''
 			if count==1:
-				bMessage = 'MASTER ACCOUNT:: Placed a New Take-Profit-Limit Order, Price: ' + str(upd[0]['price']) + ' StopPx: ' + str(upd[0]['stopPx']) + \
+				bMessage = 'MASTER ACCOUNT: Placed a New Take-Profit-Limit Order, Price: ' + str(upd[0]['price']) + ' StopPx: ' + str(upd[0]['stopPx']) + \
 					' Quantity: ' + str(orderData['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair \n\n'
-			clientMsg = 'CLIENT-'+client.accName+':: Placed a New Take-Profit-Limit Order, Price: ' + str(upd[0]['price']) + ' StopPx: ' + str(upd[0]['stopPx']) + \
+			clientMsg = client.accName+': Placed a New Take-Profit-Limit Order, Price: ' + str(upd[0]['price']) + ' StopPx: ' + str(upd[0]['stopPx']) + \
 					' Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair'
-			print(clientMsg)
+			console_message(clientMsg, 'bitmex')
 			bMessage = bMessage + clientMsg
 			
 		#print(upd[0])
@@ -253,7 +254,7 @@ def copy_order( client, message, count):
 			clientOrders[client._id][orderData['orderID']] = upd[0]['orderID']
 		#print(clientOrders)
 	except Exception as ex:
-		    print(client.accName+' ' +str(ex))
+		    console_message(client.accName+' ' +str(ex), 'bitmex')
 
 
 def update_order( client, message, action):
@@ -264,7 +265,7 @@ def update_order( client, message, action):
 		if client._id in clientOrders.keys():
 			pass
 	except Exception as ex:
-		    print(client.accName+' ' +str(ex))
+		    console_message(client.accName+' ' +str(ex), 'bitmex')
 		    return
 
 	try:
@@ -272,25 +273,25 @@ def update_order( client, message, action):
 		if action == 'price':
 			ordPrice = orderData['price']
 			upd = client.Order.Order_amend(orderID=ordId, price=ordPrice).result()
-			print('CLIENT-'+client.accName+':: Updating Limit-Order, new Price: ' + str(upd[0]['price']) + ' for the '+ upd[0]['symbol'] + ' pair')
-			
+			console_message(client.accName+': Updating Limit-Order, new Price: ' + str(upd[0]['price']) + ' for the '+ upd[0]['symbol'] + ' pair', 'bitmex');
+
 		elif action == 'stopPx':
 			ordPx = orderData['stopPx']
 			upd = client.Order.Order_amend(orderID=ordId, stopPx=ordPx).result()
-			print('CLIENT-'+client.accName+':: Updating Stop-Order, new stopPx: ' + str(upd[0]['stopPx']) + ' for the '+ upd[0]['symbol'] + ' pair')
+			console_message(client.accName+': Updating Stop-Order, new stopPx: ' + str(upd[0]['stopPx']) + ' for the '+ upd[0]['symbol'] + ' pair', 'bitmex')
 
 		elif action == 'pegOffsetValue':
 			pegOffset = orderData['pegOffsetValue']
 			upd = client.Order.Order_amend(orderID=ordId, pegOffsetValue=pegOffset).result()
-			print('CLIENT-'+client.accName+':: Updating Stop-Order, new stopPx: ' + str(upd[0]['stopPx']) + ' for the '+ upd[0]['symbol'] + ' pair')
+			console_message(client.accName+': Updating Stop-Order, new stopPx: ' + str(upd[0]['stopPx']) + ' for the '+ upd[0]['symbol'] + ' pair', 'bitmex')
 			
 		else:
 			ordQty = orderData['orderQty']
 			upd = client.Order.Order_amend(orderID=ordId, orderQty=ordQty*client.BlncRate).result()
-			print('CLIENT-'+client.accName+':: Updating Limit-Order, new Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair')
+			console_message(client.accName+': Updating Limit-Order, new Quantity: ' + str(upd[0]['orderQty']) + ' for the '+ upd[0]['symbol'] + ' pair', 'bitmex')
 		
 	except Exception as ex:
-		    print(client.accName+' ' +str(ex))
+		    console_message(client.accName+' ' +str(ex), 'bitmex')
 
 
 def update_position( client, message, action):
@@ -301,16 +302,16 @@ def update_position( client, message, action):
 		if message['data'][0]['crossMargin']==False and 'leverage' not in message['data'][0].keys():
 			try:	
 				upd = client.Position.Position_isolateMargin(symbol=posData['symbol']).result()
-				print('CLIENT-'+client.accName+':: Isolated Margin for '+ upd[0]['symbol'] + ' position')
+				console_message(client.accName+': Isolated Margin for '+ upd[0]['symbol'] + ' position', 'bitmex')
 				return
 			except Exception as ex:
-				print(client.accName+' ' +str(ex))
+				console_message(client.accName+' ' +str(ex), 'bitmex')
 				
 	try:	
 		upd = client.Position.Position_updateLeverage(symbol=posData['symbol'], leverage=lvrgPrcnt*posData['leverage']).result()
-		print('CLIENT-'+client.accName+':: Updating Leverage for '+ upd[0]['symbol'] + ' position')
+		console_message(client.accName+': Updating Leverage for '+ upd[0]['symbol'] + ' position', 'bitmex')
 	except Exception as ex:
-		print(client.accName+' ' +str(ex))
+		console_message(client.accName+' ' +str(ex), 'bitmex')
 
 def cancel_order( client, message):
 
@@ -319,12 +320,12 @@ def cancel_order( client, message):
 		# orderData = message['data'][0]
 		try:	
 			if client._id in clientOrders.keys():
-				print("CLIENT-"+client.accName+":: Cancelling OrderID: " + clientOrders[client._id][orderData['orderID']])
+				console_message(client.accName+": Cancelling OrderID: " + clientOrders[client._id][orderData['orderID']], 'bitmex')
 		except Exception as ex:
-				print(client.accName+' ' +str(ex))
+				console_message(client.accName+' ' +str(ex), 'bitmex')
 		try:
 			ordId = clientOrders[client._id][orderData['orderID']]
 			upd = client.Order.Order_cancel(orderID=ordId).result()
 			#print(upd)
 		except Exception as ex:
-				print(client.accName+' ' +str(ex))
+				console_message(client.accName+' ' +str(ex), 'bitmex')

@@ -8,7 +8,6 @@ sys.path.insert(0, __DIR__ + '/../')
 
 from modules.helper import *
 
-
 list_clients(get_clients(), 'bitmex')
 
 # Read the main_account's API keys - also do check if is testnet or not

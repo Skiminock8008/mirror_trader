@@ -21,3 +21,4 @@ strict-rfc3339==0.7
 swagger-spec-validator==2.1.0
 webcolors==1.8.1
 websocket-client==0.46.0
+ccxt==1.21.15

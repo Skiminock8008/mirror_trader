@@ -209,7 +209,7 @@ class ModuleAppProcess {
             
             console.log(args);
 
-            const ls = child_process.spawn('/usr/bin/python3', args, {
+            const ls = child_process.spawn('/usr/bin/python3.7', args, {
                 detached: true
             });
 

@@ -42,9 +42,9 @@ def list_clients(obj, exchange):
         file.write(obj[exchange]['main']['net'])
     open(__DIR__ + '/../' + exchange + '/console_messages.txt', 'w').close()
 
-def console_message(msg):
+def console_message(msg, exchange):
     print(msg)
-    fname = __DIR__ + '/../bitmex/console_messages.txt'
+    fname = __DIR__ + '/../' + exchange + '/console_messages.txt'
     with open(fname, 'a') as file:
 	    file.write(msg + '\n')
 	    clearLines(fname)

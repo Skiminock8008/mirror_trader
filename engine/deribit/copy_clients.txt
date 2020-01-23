@@ -1,0 +1,2 @@
+k3aw9QdC   PvJBjR3GBq8ynQPqRiKAkOSq8XTpINezfdz4cP8vrmI   testnet   Client 1
+m1yELRw3   7b0ulbmNpv9hJ8d26dLYwwIyafLxEYchZe9WRi2X69c   testnet   Client 2
