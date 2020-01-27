@@ -1,6 +1,0 @@
-Client 1: Updating Leverage for XBTUSD position
-Client 2: Updating Leverage for XBTUSD position
-Client 1: Placed a New Limit-Order, Price: 7257.5 Quantity: 21 for the XBTUSD pair
-Client 2: Placed a New Limit-Order, Price: 7257.5 Quantity: 21 for the XBTUSD pair
-Client 1: Cancelling OrderID: 84595ba2-a923-7af4-6673-9f41abfd20e4
-Client 2: Cancelling OrderID: 4a28f2e1-e1ea-c5fb-60f7-419382ceaf83
