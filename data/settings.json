@@ -22,62 +22,56 @@
   },
   "binance": {
     "main": {
-      "api_key": "OU9xTruVXWw7EO99sH",
-      "api_secret": "WcyOluyQS9ioeGuj3KXY9kvLwyIFL3bB8nTF",
-      "net": "testnet"
+      "api_key": "ZLUX11OJ9B9jj7AdCdJKMELAwLxJEDgNYGUg2KDHD1wdOa2nX34goRkGDI7yfVUZ",
+      "api_secret": "IU3BZNmraOXR9yulgKbD3SFA1rGhAeliVkFAiOr2LnfIJAfEZe54JlslVtzTIflf",
+      "net": "mainnet"
     },
     "clients": {
       "client1": {
         "api_key": "O0CdbMOCvmpBqOvtkM",
         "api_secret": "GSWugCko0OFOtaTSs4yybjfTW6nkIHn8LaXX",
         "name": "Client 1",
-        "net": "testnet"
+        "net": "mainnet"
       },
       "client3": {
         "name": "Client 3",
         "api_key": "HLDuAbqBSSpEg7Xz8n",
         "api_secret": "c6E1l13ZpBT3X9kWwLkB4eZMNBnNsQ0bOCkT",
-        "net": "testnet"
+        "net": "mainnet"
       }
     }
   },
   "bybit": {
     "main": {
-      "api_key": "1234",
-      "api_secret": "1234",
+      "api_key": "uBJx2GLFR0kmVQ0a1x",
+      "api_secret": "HgsiypyFqDRKe6rcWJA1jNk766BboqvQ9EvH",
       "net": "testnet"
     },
     "clients": {
       "client1": {
-        "api_key": "1234byby",
-        "api_secret": "1234bit2",
+        "api_key": "zP3unlDhbmwEgrlO42",
+        "api_secret": "B0GnersrlzskmohvD3T8LBshwlH3tl5eQLah",
         "name": "Client 1",
-        "net": "testnet"
-      },
-      "client2": {
-        "api_key": "1234yb52",
-        "api_secret": "1234tib12",
-        "name": "Client 2",
         "net": "testnet"
       }
     }
   },
-  "verbit": {
+  "deribit": {
     "main": {
-      "api_key": "1234",
-      "api_secret": "1234",
+      "api_key": "mEWbxOZ4",
+      "api_secret": "6HzgOPg8AcvzAgUTR_WIBXO3zqU_19n77e_Ny2dgLqw",
       "net": "testnet"
     },
     "clients": {
       "client1": {
-        "api_key": "1234verb",
-        "api_secret": "1234revb",
+        "api_key": "k3aw9QdC",
+        "api_secret": "PvJBjR3GBq8ynQPqRiKAkOSq8XTpINezfdz4cP8vrmI",
         "name": "Client 1",
         "net": "testnet"
       },
       "client2": {
-        "api_key": "1234vrb",
-        "api_secret": "1234rvb",
+        "api_key": "m1yELRw3",
+        "api_secret": "7b0ulbmNpv9hJ8d26dLYwwIyafLxEYchZe9WRi2X69c",
         "name": "Client 2",
         "net": "testnet"
       }

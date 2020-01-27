@@ -1,4 +1,4 @@
-const exchanges = ["bitmex", "binance", "bybit", "verbit"];
+const exchanges = ["bitmex", "binance", "bybit", "deribit"];
 
 let CTX_CLIENT = {
 

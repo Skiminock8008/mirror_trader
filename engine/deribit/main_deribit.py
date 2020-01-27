@@ -11,7 +11,7 @@ from modules.helper import *
 
 list_clients(get_clients(), 'deribit')
 
-# Read the main_account's API keys - also do check if is testnet or not
+# Read the deribit API keys - also do check if is testnet or not
 f = open(__DIR__ + '/main_account.txt', 'r')
 CREDENTIALS = f.read().split('\n')
 CREDENTIALS = CREDENTIALS[0].split('   ')

@@ -7,12 +7,17 @@ import time
 import ccxt # for the OCO orders
 from modules.helper import *
 
-# global variables (seen by the main_account.py too)
+# global variables (seen by the binance.py too)
 clientOrders = {}
 ocoOrders = { }
 copy_clients = []
 lvrgPrcnt = 1
 mainBalance = 1.0
+
+__DIR__ = os.path.dirname(os.path.realpath(__file__))
+
+sys.path.insert(0, __DIR__)
+sys.path.insert(0, __DIR__ + '/../')
 
 
 # ------ HELPER FUNCTIONS --------------
@@ -26,7 +31,7 @@ def get_clients():
 def init_copy_clients( MainBalance ):
 	global copy_clients
      
-	f = open('copy_clients.txt', 'r')
+	f = open(__DIR__ + '/copy_clients.txt', 'r')
 	creds = f.read().split('\n')
 	f.close()
 	#registerTelegramCommands()

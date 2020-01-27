@@ -27,7 +27,8 @@ def add_to_txt(value, exchange):
     with open(__DIR__ + '/../' + exchange + '/copy_clients.txt', 'a') as file:
         file.write(value['api_key'] + '   ')
         file.write(value['api_secret'] + '   ')
-        file.write(value['net'] + '   ')
+        if 'binance' not in exchange:
+            file.write(value['net'] + '   ')
         file.write(value['name'] + '\n')
 
 
@@ -39,7 +40,8 @@ def list_clients(obj, exchange):
     with open(__DIR__ + '/../' + exchange + '/main_account.txt', 'a') as file:
         file.write(obj[exchange]['main']['api_key'] + '   ')
         file.write(obj[exchange]['main']['api_secret'] + '   ')
-        file.write(obj[exchange]['main']['net'])
+        if 'binance' not in exchange:
+            file.write(obj[exchange]['main']['net'])
     open(__DIR__ + '/../' + exchange + '/console_messages.txt', 'w').close()
 
 def console_message(msg, exchange):

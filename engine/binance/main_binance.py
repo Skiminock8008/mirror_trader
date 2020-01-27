@@ -1,14 +1,14 @@
 import os
 import sys
-
 from binance.client import Client
 from binance.websockets import BinanceSocketManager
-from modules.helper import *
 
 __DIR__ = os.path.dirname(os.path.realpath(__file__))
 
 sys.path.insert(0, __DIR__)
 sys.path.insert(0, __DIR__ + '/../')
+
+from modules.helper import *
 
 list_clients(get_clients(), 'binance')
 
@@ -17,8 +17,14 @@ f = open(__DIR__ + '/main_account.txt', 'r')
 CREDENTIALS = f.read().split('\n')
 CREDENTIALS = CREDENTIALS[0].split('   ')
 
+print(CREDENTIALS[0])
+print(CREDENTIALS[1])
+
 binance_api_key = CREDENTIALS[0]
 binance_api_secret = CREDENTIALS[1]
+
+os.environ['BINANCE_API_KEY'] = binance_api_key
+os.environ['BINANCE_API_SECRET'] = binance_api_secret
 
 
 from copy_clients import copy_order
