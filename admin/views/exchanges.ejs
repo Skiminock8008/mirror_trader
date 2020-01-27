@@ -13,11 +13,14 @@
             <h5>MASTER ACCOUNT</h5>
             
             <div style="display:flex;">
+                <% if (ex != 'binance') { %> 
                 <label for="<%=ex%>_main_testcheckbox">
                     Testnet?
                 </label>
+                
                 <input type="checkbox" id="<%=ex%>_main_testcheckbox" name="settings[<%=ex%>][main][net]" 
-                value="true" style="vertical-align: middle;" <%=settings[ex].main.net ? "checked" : "" %>   />
+                value="true" style="vertical-align: middle;" <%=settings[ex].main.net == 'testnet' ? "checked" : "" %>   />
+                <% } %>
             </div>
 
             <label for="main__apikey">
@@ -45,11 +48,14 @@
             <div class="client <%=ex%>_<%=i%>_div">
                 <div style="display: flex;">
                     <input class="client_name" name="settings[<%=ex%>][clients][<%=i%>][name]" value="Client <%=w%>" />
+                    <% if (ex != 'binance') { %> 
                     <label for="<%=ex%>_<%=i%>_testcheckbox">
                         Testnet?
                     </label>
+                    
                     <input type="checkbox" id="<%=ex%>_<%=i%>_testcheckbox" name="settings[<%=ex%>][clients][<%=i%>][net]" 
-                    value="true" style="vertical-align: middle;" <%=settings[ex].clients[i].net ? "checked" : "" %>   />
+                    value="true" style="vertical-align: middle;" <%=settings[ex].clients[i].net == 'testnet' ? "checked" : "" %>   />
+                    <% } %>
                 </div>
 
                 <label for="client_<%=ex%>_apikey[<%=i%>]">

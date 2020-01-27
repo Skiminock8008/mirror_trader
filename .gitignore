@@ -6,3 +6,5 @@ __pycache__
 engine/tmp/
 data/
 orders.json
+*_env
+console_messages.txt

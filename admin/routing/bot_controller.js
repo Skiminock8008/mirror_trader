@@ -32,7 +32,7 @@ class RouteBotController {
             app.post(`/settings/turn_on_${exchanges[i]}`, ref.auth.do, async function (req, res) {
                 console.log(`/settings/turn_on_${exchanges[i]}/`);
     
-                let result = await ref.app_process.start('main_account.py', exchanges[i]);
+                let result = await ref.app_process.start(`main_${exchanges[i]}.py`, exchanges[i]);
     
                 let message = '';
                 if (result == true) {
@@ -52,7 +52,7 @@ class RouteBotController {
             app.post(`/settings/turn_off_${exchanges[i]}`, ref.auth.do, async function (req, res) { 
                 console.log(`/settings/turn_off_${exchanges[i]}/`);
     
-                let result = await ref.app_process.stop('main_account.py');
+                let result = await ref.app_process.stop(`main_${exchanges[i]}.py`);
                 
                 let message = '';
                 if (result == true) {

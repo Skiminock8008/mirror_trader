@@ -201,6 +201,7 @@ class ModuleAppProcess {
      */
     async start(name, exchange) {
         let ref = this;
+        let python3 = __dirname + `/../../engine/${exchange}/${exchange}_env/bin/python3.7`;
 
         try {
             let args = [
@@ -209,7 +210,7 @@ class ModuleAppProcess {
             
             console.log(args);
 
-            const ls = child_process.spawn('/usr/bin/python3.7', args, {
+            const ls = child_process.spawn(python3, args, {
                 detached: true
             });
 

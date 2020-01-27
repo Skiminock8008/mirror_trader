@@ -1,8 +1,8 @@
+import os
 import sys
 import threading,keyboard
 from tkinter import Entry, Label,Tk, scrolledtext,Button
 import bybit
-import 
 
 __DIR__ = os.path.dirname(os.path.realpath(__file__))
 
@@ -15,25 +15,25 @@ list_clients(get_clients(), 'bybit')
 
 print("Bybit copy trader started!")
 
-f=open('main_account.txt','r')
-lines=f.readlines()
+f = open(__DIR__ + '/main_account.txt', 'r')
+lines = f.readlines()
 f.close()
 if len(lines)==0:
-    print("No main api key!")
+    console_message("No main api key!", "bybit")
     sys.exit()
 if(len(lines[0].split())<3):
-    print("Main api key info is less!")
+    print("Main api key info is too short!")
     sys.exit()
-main_key=lines[0].split()[0]
-main_secret=lines[0].split()[1]
+main_key = lines[0].split()[0]
+main_secret = lines[0].split()[1]
 if(lines[0].split()[2]=='testnet'):
     test_flag=True
 else:
     test_flag=False
 main_client  = bybit.bybit(test=test_flag, api_key=main_key, api_secret=main_secret)
 
-f=open('copy_clients.txt','r')
-lines=f.readlines()
+f = open(__DIR__ + '/copy_clients.txt', 'r')
+lines = f.readlines()
 f.close()
 if len(lines)==0:
     print("No client api keys!")
@@ -58,7 +58,7 @@ id_list=[]
 pre_result=main_client.Order.Order_getOrders(limit=5).result()
 
 if pre_result[0]['ret_msg']!='ok':
-    print('Main API key problem: '+pre_result[0]['ret_msg'])
+    console_message('Main API key problem: '+pre_result[0]['ret_msg'], "bybit")
     sys.exit()
     
 pre_orders=pre_result[0]['result']['data']
@@ -110,9 +110,9 @@ def watcher():
             result=(clt.Order.Order_new(side=od,symbol=sb,order_type=ot,qty=to_qty,price=pr,time_in_force=tf).result())
         if result[0]['ret_msg']!='ok':
             print(key[0]+' '+result[0]['ret_msg'])
-            print('Bye.. See you again! :)')
+            print('Exiting...')
             sys.exit()
-        print('Order placed into '+accounts[index]+'  New qty is '+to_qty) 
+        console_message(accounts[index] + ': Placed New Market Order, Quantity: ' +to_qty, "bybit") 
         if ost=="Untriggered":
             return [result[0]['result']['stop_order_id'],to_qty]
         return [result[0]['result']['order_id'],to_qty]
@@ -243,10 +243,10 @@ def g_hotkey_process():
     SlaveArea.grid(column=0,row=3,columnspan=3)    
     
     def save():
-        f=open('main_account.txt','w')
+        f=open(__DIR__ + 'main_account.txt','w')
         f.write(ApiText.get()+' '+SecretText.get()+' '+AccountText.get()+'\n')
         f.close()
-        f=open('copy_clients.txt','w')
+        f=open(__DIR__ + 'copy_clients.txt','w')
         f.write(SlaveArea.get('1.0','end-1c'))
         f.close()
     
@@ -255,13 +255,13 @@ def g_hotkey_process():
     SaveButton.grid(column=1,row=4)
     
     def load():
-        f=open('main_account.txt','r')
+        f=open(__DIR__ + 'main_account.txt','r')
         lines=f.readlines()
         f.close()
         ApiText.insert(0, lines[0].split()[0])
         SecretText.insert(0, lines[0].split()[1])
         AccountText.insert(0, lines[0].split()[2])
-        f=open('copy_clients.txt','r')
+        f=open(__DIR__ + 'copy_clients.txt','r')
         lines=f.readlines()
         f.close()
         for line in lines:
@@ -277,7 +277,7 @@ def main():
 
     while True:
         watcher()
-        time.sleep(3)
+        #time.sleep(3)
         
 if __name__ == '__main__':
     main()

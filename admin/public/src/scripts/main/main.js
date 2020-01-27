@@ -45,14 +45,14 @@ let CTX = {
       autohide: true
     },
     {
-      selector: "#turn_on_verbit",
-      url: "/settings/turn_on_verbit",
+      selector: "#turn_on_deribit",
+      url: "/settings/turn_on_deribit",
       autohide: true
     },
 
     {
-      selector: "#turn_off_verbit",
-      url: "/settings/turn_off_verbit",
+      selector: "#turn_off_deribit",
+      url: "/settings/turn_off_deribit",
       autohide: true
     },
   ],

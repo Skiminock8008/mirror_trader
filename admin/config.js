@@ -4,7 +4,7 @@ const config = {
         'settings': __dirname + '/../data/settings.json',
     },
 
-    'exchanges': ['bitmex', 'binance', 'bybit', 'verbit'],
+    'exchanges': ['bitmex', 'binance', 'bybit', 'deribit'],
 
     'credentials': {
         'username': 'secret',
