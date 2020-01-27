@@ -21,6 +21,7 @@ class RoutePage {
     apply() {
         let ref = this;
         let app = ref.app;
+        let exchanges = ref.config.exchanges;
         let refresh_json = async function() {
             let data = false;
             try {
@@ -38,7 +39,7 @@ class RoutePage {
 
             res.render("app", {
                 settings: ref.settings,
-                exchanges: ref.config.exchanges,
+                exchanges: exchanges,
             });
         });
 
@@ -46,27 +47,33 @@ class RoutePage {
         // Status
         app.get("/status", ref.auth.do, async function (req, res) {
 
-            let is_running_bitmex = await ref.app_process.is_running('main_bitmex.py');
-            let bitmex_messages = await ref.app_process.console_message('bitmex');
+            let is_running = [];
+            let ex_messages = [];
+            let res_object = {}
 
-            let is_running_binance = await ref.app_process.is_running('main_binance.py');
-            let binance_messages = await ref.app_process.console_message('binance');
+            let is_running_values = [];
+            let ex_messages_values = [];
 
-            let is_running_bybit = await ref.app_process.is_running('main_bybit.py');
-            let bybit_messages = await ref.app_process.console_message('bybit');
+            //Get variable names
+            exchanges.forEach(exchange => {
+                is_running.push(`is_running_${exchange}`);
+                ex_messages.push(`${exchange}_messages`);
+            })
 
-            let is_running_deribit = await ref.app_process.is_running('main_deribit.py');
-            let deribit_messages = await ref.app_process.console_message('deribit');
+            //Get the values
+            for (let i = 0; i < exchanges.length; i++){
+                is_running_values.push(await ref.app_process.is_running(`main_${exchanges[i]}`));
+                ex_messages_values.push(await ref.app_process.console_message(`${exchanges[i]}`));
+            }
+
+            //Create response object
+            for(let i in exchanges) {
+                res_object[`is_running_${exchanges[i]}`] = is_running_values[i];
+                res_object[`${exchanges[i]}_messages`] = ex_messages_values[i];
+            }
 
             res.json({
-                'is_running_bitmex': is_running_bitmex,
-                'bitmex_messages': bitmex_messages,
-                'is_running_binance': is_running_binance,
-                'binance_messages': binance_messages,
-                'is_running_bybit': is_running_bybit,
-                'bybit_messages': bybit_messages,
-                'is_running_deribit': is_running_deribit,
-                'deribit_messages': deribit_messages,
+                ...res_object
             })
         });
 
