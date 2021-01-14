@@ -12,3 +12,5 @@ Brought to you for free by www.deficlerk.com
 **3) Start the app**\
 ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `cd admin && npm start`
 
+# Visual
+![monkey see monkey do](https://i.imgur.com/gY5PcLy.png)
