@@ -1,5 +1,5 @@
 # mirror_trader
-Bot will copy trades from main account to all your other accounts on crypto exchanges (Binance, Bitmex, Bybit, Deribit)
+Bot will copy trades from main account to all your other accounts on crypto exchanges (Binance, Bitmex, Bybit, Deribit)\
 Brought to you for free by www.deficlerk.com
 
 # installation
