@@ -1,7 +1,7 @@
 # mirror_trader
 Bot will copy trades from main account to all your other accounts on crypto exchanges (Binance, Bitmex, Bybit, Deribit)
 
-#installation
+# installation
 Install Node modules
 cd admin && npm install
 
