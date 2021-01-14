@@ -7,7 +7,7 @@ Brought to you for free by www.deficlerk.com
 ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `cd admin && npm install`
 
 # **2) Install Python dependencies**\
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `cd engine/*whichever exchange you are interested in && pip install -r requirements.txt`
+![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `cd engine/**whichever exchange you are interested in** && pip install -r requirements.txt`
 
 # **3) Start the app**\
 ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `cd admin && npm start`
