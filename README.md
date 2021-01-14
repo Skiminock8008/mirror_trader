@@ -2,10 +2,11 @@
 Bot will copy trades from main account to all your other accounts on crypto exchanges (Binance, Bitmex, Bybit, Deribit)
 
 # installation
-Install Node modules
+**1) Install Node modules**
 cd admin && npm install
 
-Install Python dependencies
+**2) Install Python dependencies**
 cd engine/*whichever exchange you are interested in && pip install -r requirements.txt
 
+**3) Start the app**
 cd admin && npm start
